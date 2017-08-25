@@ -3,7 +3,10 @@ package dk.fitfit.doconelin.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(indexes = {@Index(name = "tag_name_idx", columnList = "name")})
+@Table(indexes = {
+		@Index(name = "tag_name_idx", columnList = "name"),
+		@Index(name = "tag_description_idx", columnList = "description")
+})
 public class Tag {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

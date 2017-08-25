@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 public interface OneLinerRepository extends JpaRepository<OneLiner, Long> {
-	@Query("select distinct o from OneLiner o inner join o.tags tag where tag.name in :tags")
-	List<OneLiner> findByTagsName(@Param("tags") List<String> tags);
+	@Query("select o from OneLiner o join o.tags t where t.name in (:tags) group by o having count(t) = :tag_count")
+	List<OneLiner> findByAllTags(@Param("tags") List<String> tags, @Param("tag_count") long tagCount);
 }

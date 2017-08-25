@@ -1,6 +1,7 @@
 package dk.fitfit.doconelin.controller;
 
 import dk.fitfit.doconelin.domain.OneLiner;
+import dk.fitfit.doconelin.domain.Tag;
 import dk.fitfit.doconelin.service.OneLinerServiceInterface;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +21,46 @@ public class OneLinerController {
 		return oneLinerService.findAll();
 	}
 
-	@PostMapping("/oneliners")
-	public List<OneLiner> searchByTags(@RequestBody List<String> tags) {
-		return oneLinerService.findByTagNames(tags);
+	@GetMapping("/init")
+	public List<OneLiner> getInit() {
+		Tag db = createTag("db", "Database related");
+		Tag mysql = createTag("mysql", "Mysql the database vendor acquired by oracle");
+		Tag server = createTag("server", "server...");
+		Tag mongo = createTag("mongo", "Mongodb nosql db");
+		Tag noSql = createTag("NoSql", "NoSql database...");
+		Tag sql = createTag("sql", "Structured query language");
+
+		OneLiner oneLiner = createOneLiner("docker run --name mysql -e MYSQL_ROOT_PASSWORD=skummet -p 3306:3306 -dt mysql:latest",
+				"User: root\n" +
+						"Source: https://hub.docker.com/_/mysql/\n" +
+						"Command: mysql --auto-rehash -u root -h 192.168.0.3 -p",
+				db, mysql, server, sql);
+
+		OneLiner save = oneLinerService.save(oneLiner);
+
+		OneLiner oneLiner2 = createOneLiner("docker run --name mongodb -p 27017:27017 -p 28017:28017 -dt mongo:latest",
+				"Not much to add...",
+				mongo, db, noSql);
+
+		OneLiner save2 = oneLinerService.save(oneLiner2);
+		return oneLinerService.findAll();
+	}
+
+	@PostMapping("/search/findByAllTags")
+	public List<OneLiner> findByAllTags(@RequestBody List<String> tags) {
+		return oneLinerService.findByAllTags(tags);
+	}
+
+	private Tag createTag(String name, String description) {
+		Tag tag = new Tag(name, description);
+		return oneLinerService.save(tag);
+	}
+
+	private OneLiner createOneLiner(String line, String description, Tag... tags) {
+		OneLiner oneLiner = new OneLiner();
+		oneLiner.setLine(line);
+		oneLiner.setDescription(description);
+		oneLiner.setTags(tags);
+		return oneLinerService.save(oneLiner);
 	}
 }

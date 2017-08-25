@@ -1,20 +1,16 @@
 package dk.fitfit.doconelin.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(indexes = {@Index(name = "tag_name_idx", columnList = "name")})
 public class Tag {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@Column(unique = true)
 	private String name;
 	private String description;
-
-//	@ManyToMany
-//	private Set<OneLiner> oneLiners = new HashSet<OneLiner>();;
 
 	private Tag() {
 		// For hibernate

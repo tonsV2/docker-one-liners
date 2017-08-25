@@ -13,7 +13,7 @@ public class OneLiner {
 	private String line;
 	private String description;
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinTable(name = "liners_tags",
+	@JoinTable(name = "one_liner_tag",
 			joinColumns = @JoinColumn(name = "one_liner_id", referencedColumnName = "id"),
 			inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id"))
 	private List<Tag> tags = new ArrayList<>();

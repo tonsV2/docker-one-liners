@@ -2,7 +2,6 @@ package dk.fitfit.doconelin.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dk.fitfit.doconelin.DockerOneLinerApplication;
-import dk.fitfit.doconelin.domain.Tag;
 import org.assertj.core.util.Lists;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {DockerOneLinerApplication.class})
 @WebAppConfiguration
-public class TagControllerTest {
+public class OneLinerControllerTest {
 	private MockMvc mockMvc;
 
 	@Autowired
@@ -38,42 +37,29 @@ public class TagControllerTest {
 	}
 
 	@Test
-	public void tagController_findByAllTags_ShouldReturnListOfTagsOrderedByRank() throws Exception {
-		mockMvc.perform(get("/api/tagsByRank"))
-				.andExpect(status().isOk())
-				.andExpect(jsonPath("length($)").value(13))
-				.andExpect(jsonPath("$.[0].name").value("db"))
-				// TODO: Why does order differs from: [tons@localhost docker-one-liner]$ http localhost:8081/api/tagsByRank
-				.andExpect(jsonPath("$.[12].name").value("javascript"))
-				.andExpect(jsonPath(".rank").value(Lists.newArrayList(3, 2, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)));
-	}
-
-	@Test
-	public void tagController_findTagsStartingWith_ShouldReturnListOfTagsStartingWithTheArgument() throws Exception {
-		String argument = "java";
-
-		mockMvc.perform(get("/api/tagsStartingWith?name=" + argument))
-				.andExpect(status().isOk())
-				.andExpect(jsonPath("length($)").value(2))
-				.andExpect(jsonPath("$.[0].name").value("java"))
-				.andExpect(jsonPath("$.[1].name").value("javascript"));
-	}
-
-	@Test
-	public void tagController_postTags_ShouldReturnPostedTagWithId() throws Exception {
+	public void oneLinerController_findByAllTags_ShouldReturnOneLinersMatchingTags() throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
-		Tag tag = new Tag("name", "description");
+		String tags = mapper.writeValueAsString(Lists.newArrayList("db", "sql"));
 
-		MockHttpServletRequestBuilder postRequest = post("/api/tags")
+		MockHttpServletRequestBuilder postRequest = post("/api/findByAllTags")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(mapper.writeValueAsString(tag));
+				.content(tags);
 
 		mockMvc.perform(postRequest)
-				.andExpect(status().isCreated())
-				.andExpect(jsonPath("$.id").isNumber())
-				.andExpect(jsonPath("$.name").value("name"))
-				.andExpect(jsonPath("$.description").value("description"))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("length($)").value(2))
+				.andExpect(jsonPath("$.[0].line").value("docker run --name mysql -e MYSQL_ROOT_PASSWORD=skummet -p 3306:3306 -dt mysql:latest"))
+				.andExpect(jsonPath("$.[1].line").value("docker run --name postgresql -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres:9.6.2-alpine"))
 				.andDo(print());
 	}
 
+	@Test
+	public void oneLinerController_findAll_ShouldReturnListOfOneLiners() throws Exception {
+		mockMvc.perform(get("/api/oneliners"))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("length($)").value(3))
+				.andExpect(jsonPath("$.[0].line").value("docker run --name mysql -e MYSQL_ROOT_PASSWORD=skummet -p 3306:3306 -dt mysql:latest"))
+				.andExpect(jsonPath("$.[1].line").value("docker run --name mongodb -p 27017:27017 -p 28017:28017 -dt mongo:latest"))
+				.andExpect(jsonPath("$.[2].line").value("docker run --name postgresql -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres:9.6.2-alpine"));
+	}
 }

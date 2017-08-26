@@ -44,7 +44,7 @@ public class Populator {
 				"psql -h localhost -p 5432 -U postgres\n" +
 						"CREATE USER user WITH PASSWORD 'password';\n" +
 						"CREATE DATABASE liftlog OWNER liftlog;\n",
-				postgresql, db, linux, opensource);
+				postgresql, db, linux, opensource, sql);
 
 		oneLinerService.findAll();
 		return null;

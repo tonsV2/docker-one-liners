@@ -24,7 +24,7 @@ public class Tag {
 	@JsonIgnore
 	private List<OneLiner> oneLiners;
 	@Transient
-	private int rank;
+	private long rank;
 
 	private Tag() {
 		// For hibernate
@@ -33,6 +33,13 @@ public class Tag {
 	public Tag(String name, String description) {
 		this.name = name;
 		this.description = description;
+	}
+
+	public Tag(long id, String name, String description, long rank) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.rank = rank;
 	}
 
 	public long getId() {
@@ -55,11 +62,11 @@ public class Tag {
 		this.description = description;
 	}
 
-	public int getRank() {
+	public long getRank() {
 		return rank;
 	}
 
-	public void setRank(int rank) {
+	public void setRank(long rank) {
 		this.rank = rank;
 	}
 }

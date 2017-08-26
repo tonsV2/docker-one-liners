@@ -10,6 +10,20 @@ import java.util.List;
 
 @Repository
 public interface OneLinerRepository extends JpaRepository<OneLiner, Long> {
+/* SQL:
+SELECT o.*
+FROM one_liner o
+  INNER JOIN (SELECT ot.one_liner_id
+              FROM one_liner_tag ot
+                INNER JOIN one_liner o
+                  ON o.id = ot.one_liner_id
+                INNER JOIN tag t
+                  ON t.id = ot.tag_id
+              WHERE t.name IN ('db', 'sql')
+              GROUP BY ot.one_liner_id
+              HAVING Count(ot.one_liner_id) = 2) aa
+    ON o.id = aa.one_liner_id
+*/
 	@Query("select o from OneLiner o join o.tags t where t.name in (:tags) group by o having count(t) = :tag_count")
 	List<OneLiner> findByAllTags(@Param("tags") List<String> tags, @Param("tag_count") long tagCount);
 }

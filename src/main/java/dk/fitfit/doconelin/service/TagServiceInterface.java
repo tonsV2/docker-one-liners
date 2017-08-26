@@ -3,11 +3,12 @@ package dk.fitfit.doconelin.service;
 import dk.fitfit.doconelin.domain.Tag;
 
 import java.util.List;
+import java.util.Set;
 
 public interface TagServiceInterface {
-	List<Tag> search(String name);
+	List<Tag> findTagsStartingWith(String name);
 
-	List<Tag> findAll();
+	Set<Tag> findTagsByRank();
 
-	List<Tag> findTagsByRank();
+	Tag save(Tag tag);
 }

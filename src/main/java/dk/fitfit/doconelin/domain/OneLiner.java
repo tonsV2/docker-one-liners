@@ -12,8 +12,8 @@ public class OneLiner {
 	private long id;
 	private String line;
 	private String description;
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinTable(name = "one_liner_tag",
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "one_liner_tags",
 			joinColumns = @JoinColumn(name = "one_liner_id", referencedColumnName = "id"),
 			inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id"))
 	private List<Tag> tags = new ArrayList<>();

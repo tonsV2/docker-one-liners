@@ -4,9 +4,10 @@ import dk.fitfit.doconelin.domain.OneLiner;
 import dk.fitfit.doconelin.domain.Tag;
 
 import java.util.List;
+import java.util.Set;
 
 public interface OneLinerServiceInterface {
-	List<OneLiner> findByAllTags(List<String> tags);
+	Set<OneLiner> findByAllTags(Set<String> tags);
 
 	List<OneLiner> findAll();
 

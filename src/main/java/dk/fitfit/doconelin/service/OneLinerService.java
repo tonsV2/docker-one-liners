@@ -7,6 +7,7 @@ import dk.fitfit.doconelin.repository.TagRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class OneLinerService implements OneLinerServiceInterface {
@@ -19,7 +20,7 @@ public class OneLinerService implements OneLinerServiceInterface {
 	}
 
 	@Override
-	public List<OneLiner> findByAllTags(List<String> tags) {
+	public Set<OneLiner> findByAllTags(Set<String> tags) {
 		return oneLinerRepository.findByAllTags(tags, tags.size());
 	}
 
@@ -35,6 +36,6 @@ public class OneLinerService implements OneLinerServiceInterface {
 
 	@Override
 	public Tag save(Tag tag) {
-		return tagRepository.save(tag);
+		return tagRepository.saveAndFlush(tag);
 	}
 }

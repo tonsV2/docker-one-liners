@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface TagRepository extends JpaRepository<Tag, Long> {
@@ -18,5 +19,5 @@ SQL: SELECT tag.*, COUNT(tag_id) AS rank FROM tag LEFT JOIN one_liner_tag ON tag
 //	@Query("select t, count(tag_id) as rank from Tag t left join t.oneLiners group by t.id order by rank")
 //	@Query("select new map(t.id as id, t.name as name, t.description as description, count(tag_id) as rank) from Tag t left join t.oneLiners group by t.id order by rank desc")
 	@Query("select new Tag(t.id, t.name, t.description, count(tag_id) as rank) from Tag t left join t.oneLiners group by t.id order by rank desc")
-	List<Tag> findTagsByRank();
+	Set<Tag> findTagsByRank();
 }

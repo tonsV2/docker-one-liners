@@ -17,11 +17,8 @@ public class Tag {
 	@Column(unique = true)
 	private String name;
 	private String description;
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name = "one_liner_tag",
-		joinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id"),
-		inverseJoinColumns = @JoinColumn(name = "one_liner_id", referencedColumnName = "id"))
 	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags")
 	private List<OneLiner> oneLiners;
 	@Transient
 	private long rank;
@@ -68,5 +65,13 @@ public class Tag {
 
 	public void setRank(long rank) {
 		this.rank = rank;
+	}
+
+	public List<OneLiner> getOneLiners() {
+		return oneLiners;
+	}
+
+	public void setOneLiners(List<OneLiner> oneLiners) {
+		this.oneLiners = oneLiners;
 	}
 }

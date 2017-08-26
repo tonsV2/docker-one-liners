@@ -2,9 +2,12 @@ package dk.fitfit.doconelin.controller;
 
 import dk.fitfit.doconelin.domain.Tag;
 import dk.fitfit.doconelin.service.TagServiceInterface;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
@@ -15,18 +18,18 @@ public class TagController {
 		this.tagService = tagService;
 	}
 
-	@GetMapping("/search/findTagsByName")
-	public List<Tag> findByAllTags(@RequestParam String name) {
-		return tagService.search(name);
+	@PostMapping("/tags")
+	public ResponseEntity<Tag> postTag(@RequestBody Tag tag) {
+		return new ResponseEntity<>(tagService.save(tag), HttpStatus.CREATED);
+	}
+
+	@GetMapping("/tagsStartingWith")
+	public List<Tag> findTagsStartingWith(@RequestParam String name) {
+		return tagService.findTagsStartingWith(name);
 	}
 
 	@GetMapping("/tagsByRank")
-	public List<Tag> getTagsByRank() {
+	public Set<Tag> getTagsByRank() {
 		return tagService.findTagsByRank();
-	}
-
-	@GetMapping("/tags")
-	public List<Tag> getTags() {
-		return tagService.findAll();
 	}
 }

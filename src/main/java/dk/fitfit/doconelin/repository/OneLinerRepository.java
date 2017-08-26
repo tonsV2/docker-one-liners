@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface OneLinerRepository extends JpaRepository<OneLiner, Long> {
@@ -25,5 +25,5 @@ FROM one_liner o
     ON o.id = aa.one_liner_id
 */
 	@Query("select o from OneLiner o join o.tags t where t.name in (:tags) group by o having count(t) = :tag_count")
-	List<OneLiner> findByAllTags(@Param("tags") List<String> tags, @Param("tag_count") long tagCount);
+	Set<OneLiner> findByAllTags(@Param("tags") Set<String> tags, @Param("tag_count") long tagCount);
 }

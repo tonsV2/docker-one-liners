@@ -15,9 +15,14 @@ public class TagController {
 		this.tagService = tagService;
 	}
 
-	@PostMapping("/search/findTagsByName")
+	@GetMapping("/search/findTagsByName")
 	public List<Tag> findByAllTags(@RequestParam String name) {
 		return tagService.search(name);
+	}
+
+	@GetMapping("/tagsByRank")
+	public List<Tag> getTagsByRank() {
+		return tagService.findTagsByRank();
 	}
 
 	@GetMapping("/tags")

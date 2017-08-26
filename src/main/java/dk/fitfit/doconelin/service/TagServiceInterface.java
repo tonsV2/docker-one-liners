@@ -8,4 +8,6 @@ public interface TagServiceInterface {
 	List<Tag> search(String name);
 
 	List<Tag> findAll();
+
+	List<Tag> findTagsByRank();
 }

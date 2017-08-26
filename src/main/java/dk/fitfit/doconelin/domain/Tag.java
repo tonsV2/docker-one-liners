@@ -1,6 +1,9 @@
 package dk.fitfit.doconelin.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(indexes = {
@@ -14,6 +17,14 @@ public class Tag {
 	@Column(unique = true)
 	private String name;
 	private String description;
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "one_liner_tag",
+		joinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id"),
+		inverseJoinColumns = @JoinColumn(name = "one_liner_id", referencedColumnName = "id"))
+	@JsonIgnore
+	private List<OneLiner> oneLiners;
+	@Transient
+	private int rank;
 
 	private Tag() {
 		// For hibernate
@@ -42,5 +53,13 @@ public class Tag {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
 	}
 }

@@ -36,12 +36,3 @@ spring:
     username: sa
     password: ""
     driverClassName: org.h2.Driver
-
-#
-#merchant:
-#  viabill:
-#    backend-url: https://secure.viabill.com/api/merchant/account/entries/export/
-#    auth-token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJDb29sc2hvcCBNYXJrZXRwbGFjZSIsInJvbGVzIjpbIk1FUkNIQU5UIiwiU1lTVEVNIl0sImlkIjo1MDMwLCJ0b2tlblZlcnNpb24iOjEsImlhdCI6MTQ3MDA1NjM4NCwiZXhwIjoxNzg1NTg5MTg0fQ.ncRECmDMJAl3Aujhn_fOjruLLdZPXvJY_YGzD8oYvdo
-#    fetcher-cut-off-days: 10
-#  hsbc:
-#    something: something

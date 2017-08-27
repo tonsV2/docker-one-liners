@@ -19,9 +19,23 @@ spring:
     password: oneliner
     driver-class-name: org.postgresql.Driver
 
-  jackson:
-    serialization:
-      write-dates-as-timestamps: false
+---
+
+spring:
+  profiles: test
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.H2Dialect
+
+  datasource:
+    platform: h2
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: ""
+    driverClassName: org.h2.Driver
 
 #
 #merchant:

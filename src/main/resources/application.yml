@@ -21,13 +21,22 @@ spring:
 
 ---
 
+server:
+  port: 8080
+
+spring:
+  profiles: docker
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  datasource:
+    url: jdbc:postgresql://database:5432/oneliner
+
+---
+
 spring:
   profiles: test
   jpa:
-    show-sql: true
-    generate-ddl: true
-    hibernate:
-      ddl-auto: create-drop
     database-platform: org.hibernate.dialect.H2Dialect
 
   datasource:

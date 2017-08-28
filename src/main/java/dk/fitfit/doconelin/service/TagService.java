@@ -4,7 +4,6 @@ import dk.fitfit.doconelin.domain.Tag;
 import dk.fitfit.doconelin.repository.TagRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -16,8 +15,7 @@ public class TagService implements TagServiceInterface {
 	}
 
 	@Override
-	public List<Tag> findTagsStartingWith(String name) {
-//		return tagRepository.findTagsByNameIgnoreCaseContaining(name);
+	public Set<Tag> findTagsStartingWith(String name) {
 		return tagRepository.findTagsByNameIgnoreCaseStartingWith(name);
 	}
 

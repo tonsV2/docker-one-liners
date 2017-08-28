@@ -10,6 +10,8 @@ import java.util.Set;
 
 @Repository
 public interface OneLinerRepository extends JpaRepository<OneLiner, Long> {
+
+// Inspiration: http://www.sergiy.ca/how-to-write-many-to-many-search-queries-in-mysql-and-hibernate/
 /* SQL:
 SELECT o.*
 FROM one_liner o

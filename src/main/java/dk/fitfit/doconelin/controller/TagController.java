@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -24,7 +23,7 @@ public class TagController {
 	}
 
 	@GetMapping("/tagsStartingWith")
-	public List<Tag> findTagsStartingWith(@RequestParam String name) {
+	public Set<Tag> findTagsStartingWith(@RequestParam String name) {
 		return tagService.findTagsStartingWith(name);
 	}
 

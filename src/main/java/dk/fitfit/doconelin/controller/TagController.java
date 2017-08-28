@@ -23,7 +23,7 @@ public class TagController {
 	}
 
 	@GetMapping("/tagsStartingWith")
-	public Set<Tag> findTagsStartingWith(@RequestParam String name) {
+	public Set<Tag> getTagsStartingWith(@RequestParam String name) {
 		return tagService.findTagsStartingWith(name);
 	}
 

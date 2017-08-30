@@ -18,6 +18,13 @@ public class OneLiner {
 			inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id"))
 	private List<Tag> tags = new ArrayList<>();
 
+	public OneLiner() {
+	}
+
+	public OneLiner(long id) {
+		this.id = id;
+	}
+
 	public long getId() {
 		return id;
 	}

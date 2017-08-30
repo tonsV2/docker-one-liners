@@ -1,9 +1,7 @@
 package dk.fitfit.doconelin.service;
 
 import dk.fitfit.doconelin.domain.OneLiner;
-import dk.fitfit.doconelin.domain.Tag;
 import dk.fitfit.doconelin.repository.OneLinerRepository;
-import dk.fitfit.doconelin.repository.TagRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,11 +10,9 @@ import java.util.Set;
 @Service
 public class OneLinerService implements OneLinerServiceInterface {
 	private final OneLinerRepository oneLinerRepository;
-	private final TagRepository tagRepository;
 
-	public OneLinerService(OneLinerRepository oneLinerRepository, TagRepository tagRepository) {
+	public OneLinerService(OneLinerRepository oneLinerRepository) {
 		this.oneLinerRepository = oneLinerRepository;
-		this.tagRepository = tagRepository;
 	}
 
 	@Override
@@ -35,7 +31,7 @@ public class OneLinerService implements OneLinerServiceInterface {
 	}
 
 	@Override
-	public Tag save(Tag tag) {
-		return tagRepository.saveAndFlush(tag);
+	public OneLiner findOne(long id) {
+		return oneLinerRepository.findOne(id);
 	}
 }

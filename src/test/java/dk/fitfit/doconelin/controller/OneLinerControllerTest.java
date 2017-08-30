@@ -62,4 +62,34 @@ public class OneLinerControllerTest {
 				.andExpect(jsonPath("$.[1].line").value("docker run --name mongodb -p 27017:27017 -p 28017:28017 -dt mongo:latest"))
 				.andExpect(jsonPath("$.[2].line").value("docker run --name postgresql -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres:9.6.2-alpine"));
 	}
+
+	@Test
+	public void oneLinerController_findOne_ShouldAOneLiner() throws Exception {
+		int id = 1;
+
+		mockMvc.perform(get("/api/oneliners/" + id))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("length($)").value(4))
+				.andExpect(jsonPath("$.id").value("1"))
+				.andExpect(jsonPath("$.line").value("docker run --name mysql -e MYSQL_ROOT_PASSWORD=skummet -p 3306:3306 -dt mysql:latest"))
+				.andExpect(jsonPath("$.description").value("User: root\nSource: https://hub.docker.com/_/mysql/\nCommand: mysql --auto-rehash -u root -h 192.168.0.3 -p"))
+
+				.andExpect(jsonPath("length($.tags)").value(4))
+				.andExpect(jsonPath("$.tags[0].id").value(1))
+				.andExpect(jsonPath("$.tags[0].name").value("db"))
+				.andExpect(jsonPath("$.tags[0].description").value("Database related"));
+	}
+
+	@Test
+	public void oneLinerController_getTags_ShouldReturnAListOfTags() throws Exception {
+		int id = 1;
+
+		mockMvc.perform(get("/api/oneliners/" + id + "/tags"))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("length($)").value(4))
+				.andExpect(jsonPath("$[0].id").value(1))
+				.andExpect(jsonPath("$[0].name").value("db"))
+				.andExpect(jsonPath("$[0].description").value("Database related"));
+	}
+
 }

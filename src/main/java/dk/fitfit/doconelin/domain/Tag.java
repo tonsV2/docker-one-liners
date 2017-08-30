@@ -62,16 +62,4 @@ public class Tag {
 	public long getRank() {
 		return rank;
 	}
-
-	public void setRank(long rank) {
-		this.rank = rank;
-	}
-
-	public List<OneLiner> getOneLiners() {
-		return oneLiners;
-	}
-
-	public void setOneLiners(List<OneLiner> oneLiners) {
-		this.oneLiners = oneLiners;
-	}
 }

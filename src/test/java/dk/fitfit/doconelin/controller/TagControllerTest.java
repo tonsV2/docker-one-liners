@@ -76,4 +76,33 @@ public class TagControllerTest {
 				.andDo(print());
 	}
 
+	@Test
+	public void tagController_getTags_ShouldReturnListOfTags() throws Exception {
+		mockMvc.perform(get("/api/tags"))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("length($)").value(14))
+				.andExpect(jsonPath("$.[0].id").value(1))
+				.andExpect(jsonPath("$.[0].name").value("db"))
+				.andExpect(jsonPath("$.[0].description").value("Database related"));
+	}
+
+	@Test
+	public void tagController_getTag_ShouldReturnATag() throws Exception {
+		long id = 1;
+
+		mockMvc.perform(get("/api/tags/" + id))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("length($)").value(4))
+				.andExpect(jsonPath("$.id").value(1))
+				.andExpect(jsonPath("$.name").value("db"))
+				.andExpect(jsonPath("$.description").value("Database related"));
+	}
+	@Test
+	public void tagController_getTagRank_ShouldReturnTheTagsRank() throws Exception {
+		long id = 1;
+
+		mockMvc.perform(get("/api/tags/" + id + "/rank"))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("$").value(3));
+	}
 }

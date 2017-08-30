@@ -3,19 +3,22 @@ package dk.fitfit.doconelin.util;
 import dk.fitfit.doconelin.domain.OneLiner;
 import dk.fitfit.doconelin.domain.Tag;
 import dk.fitfit.doconelin.service.OneLinerServiceInterface;
-import org.springframework.boot.CommandLineRunner;
+import dk.fitfit.doconelin.service.TagServiceInterface;
 import org.springframework.stereotype.Service;
 
+// TODO: Bad practice... Use a CommandLineRunner or something other than @Service
 @Service
 public class Populator {
 	private final OneLinerServiceInterface oneLinerService;
+	private final TagServiceInterface tagService;
 
-	public Populator(OneLinerServiceInterface oneLinerService) {
+	public Populator(OneLinerServiceInterface oneLinerService, TagServiceInterface tagService) {
 		this.oneLinerService = oneLinerService;
+		this.tagService = tagService;
 		initialize();
 	}
 
-	public CommandLineRunner initialize() {
+	public void initialize() {
 		Tag db = createTag("db", "Database related");
 		Tag mysql = createTag("mysql", "Mysql the database vendor acquired by oracle");
 		Tag server = createTag("server", "server...");
@@ -47,12 +50,11 @@ public class Populator {
 				postgresql, db, linux, opensource, sql);
 
 		oneLinerService.findAll();
-		return null;
 	}
 
 	private Tag createTag(String name, String description) {
 		Tag tag = new Tag(name, description);
-		return oneLinerService.save(tag);
+		return tagService.save(tag);
 	}
 
 	private OneLiner createOneLiner(String line, String description, Tag... tags) {

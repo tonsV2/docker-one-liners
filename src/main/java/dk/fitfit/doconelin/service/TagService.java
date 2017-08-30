@@ -4,6 +4,7 @@ import dk.fitfit.doconelin.domain.Tag;
 import dk.fitfit.doconelin.repository.TagRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -27,5 +28,20 @@ public class TagService implements TagServiceInterface {
 	@Override
 	public Tag save(Tag tag) {
 		return tagRepository.save(tag);
+	}
+
+	@Override
+	public List<Tag> findAll() {
+		return tagRepository.findAll();
+	}
+
+	@Override
+	public Tag findOne(long id) {
+		return tagRepository.findOne(id);
+	}
+
+	@Override
+	public long getRank(long id) {
+		return tagRepository.getRank(id);
 	}
 }

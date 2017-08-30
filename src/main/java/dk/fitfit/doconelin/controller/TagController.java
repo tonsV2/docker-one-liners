@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -20,6 +21,21 @@ public class TagController {
 	@PostMapping("/tags")
 	public ResponseEntity<Tag> postTag(@RequestBody Tag tag) {
 		return new ResponseEntity<>(tagService.save(tag), HttpStatus.CREATED);
+	}
+
+	@GetMapping("/tags")
+	public List<Tag> getTags() {
+		return tagService.findAll();
+	}
+
+	@GetMapping("/tags/{id}")
+	public Tag getTag(@PathVariable long id) {
+		return tagService.findOne(id);
+	}
+
+	@GetMapping("/tags/{id}/rank")
+	public long getTagRank(@PathVariable long id) {
+		return tagService.getRank(id);
 	}
 
 	@GetMapping("/tagsStartingWith")

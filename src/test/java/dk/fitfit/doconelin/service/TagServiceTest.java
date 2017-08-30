@@ -23,11 +23,10 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TagServiceTest {
 	private TagServiceInterface tagService;
-
 	@Mock
 	private TagRepository tagRepository;
 	@Mock
-	Tag tag1, tag2;
+	private Tag tag1, tag2;
 
 	@Before
 	public void setUp() throws Exception {

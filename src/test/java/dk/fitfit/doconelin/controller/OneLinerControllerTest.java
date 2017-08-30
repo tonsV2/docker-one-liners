@@ -37,7 +37,7 @@ public class OneLinerControllerTest {
 	}
 
 	@Test
-	public void oneLinerController_findByAllTags_ShouldReturnOneLinersMatchingTags() throws Exception {
+	public void findByAllTags_ShouldReturnOneLinersMatchingTags() throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
 		String tags = mapper.writeValueAsString(Lists.newArrayList("db", "sql"));
 
@@ -54,7 +54,7 @@ public class OneLinerControllerTest {
 	}
 
 	@Test
-	public void oneLinerController_findAll_ShouldReturnListOfOneLiners() throws Exception {
+	public void findAll_ShouldReturnListOfOneLiners() throws Exception {
 		mockMvc.perform(get("/api/oneliners"))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("length($)").value(3))
@@ -64,7 +64,7 @@ public class OneLinerControllerTest {
 	}
 
 	@Test
-	public void oneLinerController_findOne_ShouldAOneLiner() throws Exception {
+	public void findOne_ShouldAOneLiner() throws Exception {
 		int id = 1;
 
 		mockMvc.perform(get("/api/oneliners/" + id))
@@ -81,7 +81,7 @@ public class OneLinerControllerTest {
 	}
 
 	@Test
-	public void oneLinerController_getTags_ShouldReturnAListOfTags() throws Exception {
+	public void getTags_ShouldReturnAListOfTags() throws Exception {
 		int id = 1;
 
 		mockMvc.perform(get("/api/oneliners/" + id + "/tags"))

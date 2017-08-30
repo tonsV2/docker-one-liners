@@ -38,7 +38,7 @@ public class TagControllerTest {
 	}
 
 	@Test
-	public void tagController_findByAllTags_ShouldReturnListOfTagsOrderedByRank() throws Exception {
+	public void findByAllTags_ShouldReturnListOfTagsOrderedByRank() throws Exception {
 		mockMvc.perform(get("/api/tagsByRank"))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("length($)").value(13))
@@ -49,7 +49,7 @@ public class TagControllerTest {
 	}
 
 	@Test
-	public void tagController_findTagsStartingWith_ShouldReturnListOfTagsStartingWithTheArgument() throws Exception {
+	public void findTagsStartingWith_ShouldReturnListOfTagsStartingWithTheArgument() throws Exception {
 		String argument = "java";
 
 		mockMvc.perform(get("/api/tagsStartingWith?name=" + argument))
@@ -60,7 +60,7 @@ public class TagControllerTest {
 	}
 
 	@Test
-	public void tagController_postTags_ShouldReturnPostedTagWithId() throws Exception {
+	public void postTags_ShouldReturnPostedTagWithId() throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
 		Tag tag = new Tag("name", "description");
 
@@ -77,7 +77,7 @@ public class TagControllerTest {
 	}
 
 	@Test
-	public void tagController_getTags_ShouldReturnListOfTags() throws Exception {
+	public void getTags_ShouldReturnListOfTags() throws Exception {
 		mockMvc.perform(get("/api/tags"))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("length($)").value(14))
@@ -87,7 +87,7 @@ public class TagControllerTest {
 	}
 
 	@Test
-	public void tagController_getTag_ShouldReturnATag() throws Exception {
+	public void getTag_ShouldReturnATag() throws Exception {
 		long id = 1;
 
 		mockMvc.perform(get("/api/tags/" + id))
@@ -98,7 +98,7 @@ public class TagControllerTest {
 				.andExpect(jsonPath("$.description").value("Database related"));
 	}
 	@Test
-	public void tagController_getTagRank_ShouldReturnTheTagsRank() throws Exception {
+	public void getTagRank_ShouldReturnTheTagsRank() throws Exception {
 		long id = 1;
 
 		mockMvc.perform(get("/api/tags/" + id + "/rank"))

@@ -1,8 +1,8 @@
-package dk.fitfit.doconelin.controller;
+package dk.fitfit.oneliner.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dk.fitfit.doconelin.DockerOneLinerApplication;
-import dk.fitfit.doconelin.domain.Tag;
+import dk.fitfit.oneliner.DockerOneLinerApplication;
+import dk.fitfit.oneliner.domain.Tag;
 import org.assertj.core.util.Lists;
 import org.junit.Before;
 import org.junit.Test;
@@ -80,7 +80,7 @@ public class TagControllerTest {
 	public void getTags_ShouldReturnListOfTags() throws Exception {
 		mockMvc.perform(get("/api/tags"))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("length($)").value(14))
+				.andExpect(jsonPath("length($)").value(13))
 				.andExpect(jsonPath("$.[0].id").value(1))
 				.andExpect(jsonPath("$.[0].name").value("db"))
 				.andExpect(jsonPath("$.[0].description").value("Database related"));

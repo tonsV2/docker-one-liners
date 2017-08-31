@@ -1,8 +1,8 @@
-package dk.fitfit.doconelin.controller;
+package dk.fitfit.oneliner.controller;
 
-import dk.fitfit.doconelin.domain.OneLiner;
-import dk.fitfit.doconelin.domain.Tag;
-import dk.fitfit.doconelin.service.OneLinerServiceInterface;
+import dk.fitfit.oneliner.domain.OneLiner;
+import dk.fitfit.oneliner.domain.Tag;
+import dk.fitfit.oneliner.service.OneLinerServiceInterface;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

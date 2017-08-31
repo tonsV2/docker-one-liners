@@ -1,6 +1,6 @@
-package dk.fitfit.doconelin.service;
+package dk.fitfit.oneliner.service;
 
-import dk.fitfit.doconelin.domain.Tag;
+import dk.fitfit.oneliner.domain.Tag;
 
 import java.util.List;
 import java.util.Set;

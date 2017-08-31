@@ -1,4 +1,4 @@
-package dk.fitfit.doconelin.domain;
+package dk.fitfit.oneliner.domain;
 
 import javax.persistence.*;
 import java.util.ArrayList;

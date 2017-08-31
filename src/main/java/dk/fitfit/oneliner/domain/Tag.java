@@ -1,4 +1,4 @@
-package dk.fitfit.doconelin.domain;
+package dk.fitfit.oneliner.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

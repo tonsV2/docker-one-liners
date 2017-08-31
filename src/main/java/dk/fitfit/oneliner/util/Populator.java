@@ -1,9 +1,9 @@
-package dk.fitfit.doconelin.util;
+package dk.fitfit.oneliner.util;
 
-import dk.fitfit.doconelin.domain.OneLiner;
-import dk.fitfit.doconelin.domain.Tag;
-import dk.fitfit.doconelin.service.OneLinerServiceInterface;
-import dk.fitfit.doconelin.service.TagServiceInterface;
+import dk.fitfit.oneliner.domain.OneLiner;
+import dk.fitfit.oneliner.domain.Tag;
+import dk.fitfit.oneliner.service.OneLinerServiceInterface;
+import dk.fitfit.oneliner.service.TagServiceInterface;
 import org.springframework.stereotype.Service;
 
 // TODO: Bad practice... Use a CommandLineRunner or something other than @Service

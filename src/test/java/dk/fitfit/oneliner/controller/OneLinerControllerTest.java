@@ -1,7 +1,7 @@
-package dk.fitfit.doconelin.controller;
+package dk.fitfit.oneliner.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dk.fitfit.doconelin.DockerOneLinerApplication;
+import dk.fitfit.oneliner.DockerOneLinerApplication;
 import org.assertj.core.util.Lists;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,7 +1,7 @@
-package dk.fitfit.doconelin.service;
+package dk.fitfit.oneliner.service;
 
-import dk.fitfit.doconelin.domain.Tag;
-import dk.fitfit.doconelin.repository.TagRepository;
+import dk.fitfit.oneliner.domain.Tag;
+import dk.fitfit.oneliner.repository.TagRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,12 +1,11 @@
-package dk.fitfit.doconelin.repository;
+package dk.fitfit.oneliner.repository;
 
-import dk.fitfit.doconelin.domain.Tag;
+import dk.fitfit.oneliner.domain.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Set;
 
 @Repository

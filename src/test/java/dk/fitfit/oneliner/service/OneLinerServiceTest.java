@@ -1,7 +1,7 @@
-package dk.fitfit.doconelin.service;
+package dk.fitfit.oneliner.service;
 
-import dk.fitfit.doconelin.domain.OneLiner;
-import dk.fitfit.doconelin.repository.OneLinerRepository;
+import dk.fitfit.oneliner.domain.OneLiner;
+import dk.fitfit.oneliner.repository.OneLinerRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

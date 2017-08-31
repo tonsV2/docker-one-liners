@@ -1,4 +1,4 @@
-package dk.fitfit.doconelin;
+package dk.fitfit.oneliner;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package dk.fitfit.doconelin;
+package dk.fitfit.oneliner;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

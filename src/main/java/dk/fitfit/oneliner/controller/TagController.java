@@ -1,7 +1,7 @@
-package dk.fitfit.doconelin.controller;
+package dk.fitfit.oneliner.controller;
 
-import dk.fitfit.doconelin.domain.Tag;
-import dk.fitfit.doconelin.service.TagServiceInterface;
+import dk.fitfit.oneliner.domain.Tag;
+import dk.fitfit.oneliner.service.TagServiceInterface;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

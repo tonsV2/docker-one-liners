@@ -5,33 +5,33 @@ services:
     build: .
     container_name: oneliner-backend
     volumes:
-      - ./:/app:Z
-      - ~/.m2:/root/.m2:Z
+     - ./:/app:Z
+     - ~/.m2:/root/.m2:Z
     depends_on:
      - database
     ports:
-      - 8080:8080
+     - 8080:8080
     environment:
-      - VIRTUAL_HOST=oneliner.nuc
+#     - VIRTUAL_HOST=oneliner.nuc
 
   database:
 #    image: postgres:9.6-alpine
     image: postgres:10-beta3-alpine
     container_name: oneliner-database
     environment:
-      - POSTGRES_USER=oneliner
-      - POSTGRES_PASSWORD=oneliner
-      - POSTGRES_DB=oneliner
+     - POSTGRES_USER=oneliner
+     - POSTGRES_PASSWORD=oneliner
+     - POSTGRES_DB=oneliner
 
 ## https://gist.github.com/hernandev/14b31358338a5bbe01eb023fd922656c
 ## https://stackoverflow.com/questions/24288616/permission-denied-on-accessing-host-directory-in-docker
 #  frontend:
 #    image: nginx:stable-alpine
 #    volumes:
-#      - ../../../../surf-easy-edit-frontend/dist/:/usr/share/nginx/html
+#     - ../../../../surf-easy-edit-frontend/dist/:/usr/share/nginx/html
 #    ports:
-#      - 8081:80
+#     - 8081:80
 #    environment:
-#      - VIRTUAL_HOST=easyedit.surfstation.dk
+#     - VIRTUAL_HOST=easyedit.surfstation.dk
 #    expose:
-#      - 80
+#     - 80

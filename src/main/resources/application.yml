@@ -14,9 +14,9 @@ spring:
 
   datasource:
     platform: postgres
-    url: jdbc:postgresql://localhost:5432/oneliner
-    username: oneliner
-    password: oneliner
+    url: ${DATASOURCE_URL:jdbc:postgresql://localhost:5432/oneliner}
+    username: ${DATASOURCE_USERNAME:oneliner}
+    password: ${DATASOURCE_PASSWORD:oneliner}
     driver-class-name: org.postgresql.Driver
 
 ---
@@ -26,11 +26,9 @@ server:
 
 spring:
   profiles: docker
-  jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
 
   datasource:
-    url: jdbc:postgresql://database:5432/oneliner
+    url: ${DATASOURCE_URL}
 
 ---
 
@@ -41,7 +39,7 @@ spring:
 
   datasource:
     platform: h2
-    url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE
-    username: sa
-    password: ""
+    url: ${DATASOURCE_URL:jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE}
+    username: ${DATASOURCE_USERNAME:sa}
+    password: ${DATASOURCE_PASSWORD:}
     driverClassName: org.h2.Driver

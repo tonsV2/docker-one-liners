@@ -22,7 +22,7 @@ docker run -it --rm -v "$PWD":/app:Z -v "$HOME"/.m2:/root/.m2:Z -w /app maven:3-
 docker run -it --rm -v "$PWD":/app:Z -v "$HOME"/.m2:/root/.m2:Z -w /app openjdk:8-jdk-alpine ./mvnw spring-boot:run -Dspring.profiles.active=test
 
 ## Gradle
-docker run --rm -v "$PWD":/app -w /app gradle:alpine gradle tasks
+docker run -it --rm -v "$PWD":/app -w /app gradle:alpine gradle tasks
 
 
 

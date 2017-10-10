@@ -1,3 +1,5 @@
+// https://jenkins.io/doc/book/pipeline/jenkinsfile/
+
 node {
     stage('Checkout') {
         git url: 'http://gitlab/project/docker-one-liners.git', branch: 'master'
@@ -14,7 +16,7 @@ node {
         jarFilename = pom.name + "-" + pom.version + ".jar"
     }
 
-    stage('Publish jar') {
+    stage('Deploy jar') {
         sh "./mvnw deploy -DskipTests"
     }
 

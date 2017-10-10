@@ -64,7 +64,7 @@ public class OneLinerControllerTest {
 	}
 
 	@Test
-	public void findOne_ShouldAOneLiner() throws Exception {
+	public void findOne_ShouldReturnAOneLiner() throws Exception {
 		int id = 1;
 
 		mockMvc.perform(get("/api/oneliners/" + id))

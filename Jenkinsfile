@@ -1,10 +1,11 @@
 // https://jenkins.io/doc/book/pipeline/jenkinsfile/
 
 node {
+/*
     stage('Checkout') {
         git url: 'http://gitlab/project/docker-one-liners.git', branch: 'master'
     }
-/*
+
     stage('Run tests') {
         sh './mvnw clean test -Dspring.profiles.active=test'
     }

@@ -115,7 +115,8 @@
 	<distributionManagement>
 		<snapshotRepository>
 			<id>nexus-snapshots</id>
-			<url>http://nexus.dev.altapay.com:5000/repository/oneliner/</url>
+			<url>http://nexus:5000/repository/oneliner-maven/</url>
 		</snapshotRepository>
 	</distributionManagement>
+
 </project>

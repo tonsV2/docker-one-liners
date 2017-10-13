@@ -115,7 +115,7 @@
 	<distributionManagement>
 		<snapshotRepository>
 			<id>nexus-snapshots</id>
-			<url>http://nexus:5000/repository/oneliner-maven/</url>
+			<url>http://nexus:8081/repository/oneliner-maven/</url>
 		</snapshotRepository>
 	</distributionManagement>
 

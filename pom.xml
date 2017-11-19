@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>dk.fitfit.doconelin</groupId>
@@ -28,6 +28,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.vlkan.hrrs</groupId>
+			<artifactId>hrrs-servlet-filter-base64</artifactId>
+			<version>LATEST</version>
 		</dependency>
 
 		<dependency>
@@ -103,11 +109,11 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-<!-- TODO: Disabled due to nexus not accepting executable jar's. Fix nexus...
-				<configuration>
-					<executable>true</executable>
-				</configuration>
--->
+				<!-- TODO: Disabled due to nexus not accepting executable jar's. Fix nexus...
+								<configuration>
+									<executable>true</executable>
+								</configuration>
+				-->
 			</plugin>
 		</plugins>
 	</build>

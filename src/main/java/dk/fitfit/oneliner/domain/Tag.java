@@ -12,7 +12,7 @@ import java.util.List;
 })
 public class Tag {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
 	@Column(unique = true)
 	private String name;

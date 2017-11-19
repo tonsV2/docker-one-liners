@@ -28,3 +28,5 @@ docker run -it --rm -v "$PWD":/app -w /app gradle:alpine gradle tasks
 
 docker run -it --rm -v "$PWD":/app -v "$HOME"/.m2:/root/.m2 -w /app maven:3.5-jdk-8-alpine mvn package -DskipTests 
 
+
+./mvnw clean package -Dspring.profiles.active=test && docker build -t oneliner.nuc:5000/oneliner . && docker push oneliner.nuc:5000/oneliner

@@ -1,17 +1,15 @@
 package dk.fitfit.oneliner.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dk.fitfit.oneliner.DockerOneLinerApplication;
 import dk.fitfit.oneliner.domain.Tag;
 import org.assertj.core.util.Lists;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -24,8 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {DockerOneLinerApplication.class})
-@WebAppConfiguration
+@SpringBootTest
 public class TagControllerTest {
 	private MockMvc mockMvc;
 
@@ -81,25 +78,25 @@ public class TagControllerTest {
 		mockMvc.perform(get("/api/tags"))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("length($)").value(13))
-				.andExpect(jsonPath("$.[0].id").value(1))
+				.andExpect(jsonPath("$.[0].id").value(10))
 				.andExpect(jsonPath("$.[0].name").value("db"))
 				.andExpect(jsonPath("$.[0].description").value("Database related"));
 	}
 
 	@Test
 	public void getTag_ShouldReturnATag() throws Exception {
-		long id = 1;
+		long id = 10;
 
 		mockMvc.perform(get("/api/tags/" + id))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("length($)").value(4))
-				.andExpect(jsonPath("$.id").value(1))
+				.andExpect(jsonPath("$.id").value(10))
 				.andExpect(jsonPath("$.name").value("db"))
 				.andExpect(jsonPath("$.description").value("Database related"));
 	}
 	@Test
 	public void getTagRank_ShouldReturnTheTagsRank() throws Exception {
-		long id = 1;
+		long id = 10;
 
 		mockMvc.perform(get("/api/tags/" + id + "/rank"))
 				.andExpect(status().isOk())

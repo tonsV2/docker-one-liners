@@ -20,6 +20,7 @@ public class OneLinerController {
 	// TODO: n+1?
 	// TODO: n+1?
 	// TODO: n+1?
+	// query for each oneliners tags... Probably ok
 	@GetMapping("/oneliners")
 	public List<OneLiner> getOneLiners() {
 		return oneLinerService.findAll();

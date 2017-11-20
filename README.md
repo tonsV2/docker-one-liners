@@ -12,7 +12,7 @@ http localhost:8081/api/findByAllTags <<< '["db", "sql"]'
 http localhost:8081/api/tags <<< '{"name": "name", "description": "description"}'
 
 # Docker
-## Test in docker
+## Test
 docker run -it --rm -v "$PWD":/app:Z -v "$HOME"/.m2:/root/.m2:Z -w /app openjdk:8-jdk-alpine ./mvnw clean test -Dspring.profiles.active=test
 
 ## Run with in-memory database
@@ -20,6 +20,10 @@ docker run -it --rm -v "$PWD":/app:Z -v "$HOME"/.m2:/root/.m2:Z -w /app maven:3-
 
 ## Run with in-memory database using maven wrapper
 docker run -it --rm -v "$PWD":/app:Z -v "$HOME"/.m2:/root/.m2:Z -w /app openjdk:8-jdk-alpine ./mvnw spring-boot:run -Dspring.profiles.active=test
+
+## Build and run (multi stage)
+docker build -t docker-oneliner .
+docker run -p 8080:8080 -e DATASOURCE_URL=jdbc:postgresql://192.168.0.17:5432/oneliner -e SPRING_PROFILES_ACTIVE=docker docker-oneliner
 
 ## Gradle
 docker run -it --rm -v "$PWD":/app -w /app gradle:alpine gradle tasks

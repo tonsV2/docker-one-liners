@@ -39,7 +39,10 @@ spring:
 
   datasource:
     platform: h2
-    url: ${DATASOURCE_URL:jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE}
-    username: ${DATASOURCE_USERNAME:sa}
-    password: ${DATASOURCE_PASSWORD:}
+#    url: ${DATASOURCE_URL:jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE}
+#    username: ${DATASOURCE_USERNAME:sa}
+#    password: ${DATASOURCE_PASSWORD:}
+    url: jdbc:h2:mem:testdb;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
     driverClassName: org.h2.Driver

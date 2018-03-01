@@ -2,6 +2,7 @@ version: '2'
 
 services:
   backend:
+    image: tons/oneliner-backend
     build: .
     container_name: oneliner-backend
     depends_on:

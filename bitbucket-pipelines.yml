@@ -9,9 +9,11 @@
 options:
   docker: true
 
+
 pipelines:
   default:
     - step:
+        deployment: test
         script: # Modify the commands below to build your repository.
           - ./mvnw clean test -Dspring.profiles.active=test
           # Set $DOCKER_HUB_USERNAME and $DOCKER_HUB_PASSWORD as environment variables in repository settings

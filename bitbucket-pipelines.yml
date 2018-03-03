@@ -13,9 +13,13 @@ options:
 pipelines:
   default:
     - step:
-        deployment: test
-        script: # Modify the commands below to build your repository.
+        name: Run test
+        image: openjdk:8-jdk-alpine
+        script:
           - ./mvnw clean test -Dspring.profiles.active=test
+    - step:
+        name: Build image
+        script: # Modify the commands below to build your repository.
           # Set $DOCKER_HUB_USERNAME and $DOCKER_HUB_PASSWORD as environment variables in repository settings
           - export IMAGE_NAME=tons/docker-oneliner:$BITBUCKET_COMMIT
           # build the Docker image (this will use the Dockerfile in the root of the repo)
@@ -24,4 +28,3 @@ pipelines:
           - docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
           # push the new Docker image to the Docker registry
           - docker push $IMAGE_NAME
-          

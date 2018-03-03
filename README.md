@@ -23,6 +23,7 @@ docker run -it --rm -v "$PWD":/app:Z -v "$HOME"/.m2:/root/.m2:Z -w /app openjdk:
 
 ## Build and run (multi stage)
 docker build -t docker-oneliner .
+
 docker run -p 8080:8080 -e DATASOURCE_URL=jdbc:postgresql://192.168.0.17:5432/oneliner -e SPRING_PROFILES_ACTIVE=docker docker-oneliner
 
 ## Gradle

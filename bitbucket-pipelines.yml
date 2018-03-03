@@ -28,3 +28,9 @@ pipelines:
           - docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
           # push the new Docker image to the Docker registry
           - docker push $IMAGE_NAME
+    - step:
+        name: Deploy to heroku
+#        image: wingrunr21/alpine-heroku-cli
+        deployment: test
+        script:
+          - docker push registry.heroku.com/protected-spire-99898/web

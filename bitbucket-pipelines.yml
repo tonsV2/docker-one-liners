@@ -13,9 +13,9 @@ pipelines:
   default:
     - step:
         script: # Modify the commands below to build your repository.
+          - ./mvnw clean test -Dspring.profiles.active=test
           # Set $DOCKER_HUB_USERNAME and $DOCKER_HUB_PASSWORD as environment variables in repository settings
           - export IMAGE_NAME=tons/docker-oneliner:$BITBUCKET_COMMIT
-
           # build the Docker image (this will use the Dockerfile in the root of the repo)
           - docker build -t $IMAGE_NAME .
           # authenticate with the Docker Hub registry

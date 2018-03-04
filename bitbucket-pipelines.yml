@@ -24,8 +24,13 @@ pipelines:
 #    - step:
 #        name: Push image to docker hub
 #        script:
-          - docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
-          - docker push $IMAGE_NAME
+#          - docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
+#          - docker push $IMAGE_NAME
+
+
+## TODO: Some tests should be done between build and deploy
+
+## TODO: One big step since each step is an individual docker environment...
 #    - step:
 #        name: Deploy to heroku
 #        deployment: test

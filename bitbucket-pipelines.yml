@@ -9,7 +9,6 @@
 options:
   docker: true
 
-
 pipelines:
   default:
     - step:
@@ -29,7 +28,6 @@ pipelines:
           - docker push $IMAGE_NAME
     - step:
         name: Deploy to heroku
-#        image: wingrunr21/alpine-heroku-cli
         deployment: test
         script:
           - docker tag $IMAGE_NAME registry.heroku.com/protected-spire-99898/web

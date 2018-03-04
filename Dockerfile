@@ -1,5 +1,3 @@
-# https://docs.docker.com/engine/userguide/eng-image/multistage-build/#name-your-build-stages
-
 FROM openjdk:8-jdk-alpine as builder
 ADD . /app
 WORKDIR /app

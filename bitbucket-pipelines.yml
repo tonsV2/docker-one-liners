@@ -33,4 +33,5 @@ pipelines:
 #        image: wingrunr21/alpine-heroku-cli
         deployment: test
         script:
+          - docker tag $IMAGE_NAME registry.heroku.com/protected-spire-99898/web
           - docker push registry.heroku.com/protected-spire-99898/web

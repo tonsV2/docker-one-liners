@@ -46,3 +46,16 @@ spring:
     username: sa
     password:
     driverClassName: org.h2.Driver
+
+
+---
+
+spring:
+  profiles: heroku
+  datasource:
+    url: ${JDBC_DATABASE_URL}
+    maxActive: 10
+    maxIdle: 5
+    minIdle: 2
+    initialSize: 5
+    removeAbandoned: true

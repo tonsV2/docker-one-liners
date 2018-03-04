@@ -38,11 +38,11 @@ public class TagControllerTest {
 	public void findByAllTags_ShouldReturnListOfTagsOrderedByRank() throws Exception {
 		mockMvc.perform(get("/api/tagsByRank"))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("length($)").value(13))
+				.andExpect(jsonPath("length($)").value(14))
 				.andExpect(jsonPath("$.[0].name").value("db"))
 				// TODO: Why does order differs from: [tons@localhost docker-one-liner]$ http localhost:8081/api/tagsByRank
-				.andExpect(jsonPath("$.[12].name").value("javascript"))
-				.andExpect(jsonPath(".rank").value(Lists.newArrayList(3, 2, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)));
+				.andExpect(jsonPath("$.[12].name").value("java"))
+				.andExpect(jsonPath(".rank").value(Lists.newArrayList(3, 2, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0)));
 	}
 
 	@Test
@@ -77,10 +77,10 @@ public class TagControllerTest {
 	public void getTags_ShouldReturnListOfTags() throws Exception {
 		mockMvc.perform(get("/api/tags"))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("length($)").value(13))
+				.andExpect(jsonPath("length($)").value(14))
 				.andExpect(jsonPath("$.[0].id").value(10))
-				.andExpect(jsonPath("$.[0].name").value("db"))
-				.andExpect(jsonPath("$.[0].description").value("Database related"));
+				.andExpect(jsonPath("$.[0].name").value("docker"))
+				.andExpect(jsonPath("$.[0].description").value("Container system"));
 	}
 
 	@Test
@@ -91,8 +91,8 @@ public class TagControllerTest {
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("length($)").value(4))
 				.andExpect(jsonPath("$.id").value(10))
-				.andExpect(jsonPath("$.name").value("db"))
-				.andExpect(jsonPath("$.description").value("Database related"));
+				.andExpect(jsonPath("$.name").value("docker"))
+				.andExpect(jsonPath("$.description").value("Container system"));
 	}
 	@Test
 	public void getTagRank_ShouldReturnTheTagsRank() throws Exception {
@@ -100,6 +100,6 @@ public class TagControllerTest {
 
 		mockMvc.perform(get("/api/tags/" + id + "/rank"))
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$").value(3));
+				.andExpect(jsonPath("$").value(0));
 	}
 }

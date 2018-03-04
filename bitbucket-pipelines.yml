@@ -1,0 +1,41 @@
+# This is a sample build configuration for Docker.
+# Check our guides at https://confluence.atlassian.com/x/O1toN for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+# image: atlassian/default-image:latest
+
+# enable Docker for your repository
+options:
+  docker: true
+
+pipelines:
+  default:
+    - step:
+        name: Run tests
+        image: openjdk:8-jdk-alpine
+        script:
+          - ./mvnw clean test -Dspring.profiles.active=test
+    - step:
+        name: Build image
+        script:
+          - export IMAGE_NAME=tons/docker-oneliner:$BITBUCKET_COMMIT
+          - docker build -t $IMAGE_NAME .
+#    - step:
+#        name: Push image to docker hub
+#        script:
+#          - docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
+#          - docker push $IMAGE_NAME
+
+
+## TODO: Some tests should be done between build and deploy
+
+## TODO: One big step since each step is an individual docker environment...
+#    - step:
+#        name: Deploy to heroku
+#        deployment: test
+#        script:
+          - export HEROKU_IMAGE_NAME=registry.heroku.com/glacial-spire-56714/web
+          - docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
+          - docker tag $IMAGE_NAME $HEROKU_IMAGE_NAME
+          - docker push $HEROKU_IMAGE_NAME

@@ -24,11 +24,13 @@ pipelines:
     - step:
         name: Push image to docker hub
         script:
+          - export IMAGE_NAME=tons/docker-oneliner:$BITBUCKET_COMMIT
           - docker login --username $DOCKER_HUB_USERNAME --password $DOCKER_HUB_PASSWORD
           - docker push $IMAGE_NAME
     - step:
         name: Deploy to heroku
         deployment: test
         script:
+          - export IMAGE_NAME=tons/docker-oneliner:$BITBUCKET_COMMIT
           - docker tag $IMAGE_NAME registry.heroku.com/protected-spire-99898/web
           - docker push registry.heroku.com/protected-spire-99898/web

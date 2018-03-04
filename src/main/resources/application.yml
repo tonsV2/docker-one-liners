@@ -52,5 +52,3 @@ spring:
 
 spring:
   profiles: heroku
-  datasource:
-    url: jdbc:${DATABASE_URL}

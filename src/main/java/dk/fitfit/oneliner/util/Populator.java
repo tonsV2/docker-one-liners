@@ -19,6 +19,7 @@ public class Populator {
 	}
 
 	public void initialize() {
+		Tag spring = createTag("spring", "Java framework");
 		Tag docker = createTag("docker", "Container system");
 		Tag db = createTag("db", "Database related");
 		Tag mysql = createTag("mysql", "Mysql the database vendor acquired by oracle");

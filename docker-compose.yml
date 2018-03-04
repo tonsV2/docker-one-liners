@@ -1,10 +1,9 @@
-version: '2'
+version: '3'
 
 services:
   backend:
     image: tons/oneliner-backend
     build: .
-    container_name: oneliner-backend
     depends_on:
      - database
     ports:
@@ -18,7 +17,6 @@ services:
 
   database:
     image: postgres:10-alpine
-    container_name: oneliner-database
     environment:
      - POSTGRES_USER=${DB_USERNAME}
      - POSTGRES_PASSWORD=${DB_PASSWORD}

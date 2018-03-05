@@ -28,7 +28,7 @@ pipelines:
 #          - docker push $IMAGE_NAME
 
 
-## TODO: Some tests should be done between build and deploy
+## TODO: Some tests should be done between build and deploy... run container and perform http request... at least
 
 ## TODO: One big step since each step is an individual docker environment...
 #    - step:

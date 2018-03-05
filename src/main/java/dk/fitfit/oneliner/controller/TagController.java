@@ -43,6 +43,11 @@ public class TagController {
 		return tagService.findTagsStartingWith(name);
 	}
 
+	@GetMapping("/tagsStartingWith/{name}")
+	public Set<Tag> getTagsStartingWithPath(@PathVariable String name) {
+		return tagService.findTagsStartingWith(name);
+	}
+
 	@GetMapping("/tagsByRank")
 	public Set<Tag> getTagsByRank() {
 		return tagService.findTagsByRank();

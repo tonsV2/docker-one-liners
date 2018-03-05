@@ -57,6 +57,17 @@ public class TagControllerTest {
 	}
 
 	@Test
+	public void findTagsStartingWithPath_ShouldReturnListOfTagsStartingWithTheArgument() throws Exception {
+		String argument = "java";
+
+		mockMvc.perform(get("/api/tagsStartingWith/" + argument))
+				.andExpect(status().isOk())
+				.andExpect(jsonPath("length($)").value(2))
+				.andExpect(jsonPath("$.[0].name").value("java"))
+				.andExpect(jsonPath("$.[1].name").value("javascript"));
+	}
+
+	@Test
 	public void postTags_ShouldReturnPostedTagWithId() throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
 		Tag tag = new Tag("name", "description");
@@ -94,6 +105,7 @@ public class TagControllerTest {
 				.andExpect(jsonPath("$.name").value("spring"))
 				.andExpect(jsonPath("$.description").value("Java framework"));
 	}
+
 	@Test
 	public void getTagRank_ShouldReturnTheTagsRank() throws Exception {
 		long id = 10;

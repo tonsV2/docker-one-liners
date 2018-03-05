@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -72,7 +72,7 @@ public class TagControllerTest {
 		ObjectMapper mapper = new ObjectMapper();
 		Tag tag = new Tag("name", "description");
 
-		MockHttpServletRequestBuilder postRequest = post("/api/tags")
+		RequestBuilder postRequest = post("/api/tags")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(mapper.writeValueAsString(tag));
 

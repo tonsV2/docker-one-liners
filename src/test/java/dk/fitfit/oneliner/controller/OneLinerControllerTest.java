@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -39,7 +39,7 @@ public class OneLinerControllerTest {
 		ObjectMapper mapper = new ObjectMapper();
 		String tags = mapper.writeValueAsString(Lists.newArrayList("db", "sql"));
 
-		MockHttpServletRequestBuilder postRequest = post("/api/findByAllTags")
+		RequestBuilder postRequest = post("/api/findByAllTags")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(tags);
 

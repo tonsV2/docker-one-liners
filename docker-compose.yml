@@ -11,7 +11,7 @@ services:
     environment:
       SPRING_PROFILES_ACTIVE: docker
      # The entire url should probably be passed and not just the database name... or not, jdbc, postgresql and the port(?) are static and wont change
-      DATASOURCE_URL: jdbc:postgresql://${DB_HOSTNAME}:5432/${DB_DATABASE}
+      DATASOURCE_URL: jdbc:postgresql://database:5432/${DB_DATABASE}
       DATASOURCE_USERNAME: ${DB_USERNAME}
       DATASOURCE_PASSWORD: ${DB_PASSWORD}
 

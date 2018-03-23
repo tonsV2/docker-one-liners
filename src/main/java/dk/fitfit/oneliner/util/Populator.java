@@ -19,6 +19,7 @@ public class Populator {
 	}
 
 	public void initialize() {
+		Tag maven = createTag("mvn", "Java build tool");
 		Tag alias = createTag("alias", "Suitable for command line alias");
 		Tag npm = createTag("npm", "Node package manager");
 		Tag spring = createTag("spring", "Java framework");
@@ -65,6 +66,11 @@ public class Populator {
 				"wrk",
 				"Modern HTTP benchmarking tool... https://github.com/wg/wrk",
 				linux, opensource, alias);
+
+		createOneLiner("docker run -it --rm -v \"$PWD\":/app -v \"$HOME\"/.m2:/root/.m2 -w /app maven:3.5-jdk-8-alpine mvn",
+				"mvn",
+				"Java Build Tool",
+				linux, opensource, alias, java);
 
 		oneLinerService.findAll();
 	}

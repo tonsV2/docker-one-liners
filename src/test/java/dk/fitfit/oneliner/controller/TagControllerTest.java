@@ -41,8 +41,8 @@ public class TagControllerTest {
 				.andExpect(jsonPath("length($)").value(18))
 				.andExpect(jsonPath("$.[0].name").value("alias"))
 				// TODO: Why does order differs from: [tons@localhost docker-one-liner]$ http localhost:8081/api/tagsByRank
-				.andExpect(jsonPath("$.[12].name").value("postgresql"))
-				.andExpect(jsonPath(".rank").value(Lists.newArrayList(3, 3, 3, 3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0)));
+				.andExpect(jsonPath("$.[12].name").value("javascript"))
+				.andExpect(jsonPath(".rank").value(Lists.newArrayList(4, 4, 4, 3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)));
 	}
 
 	@Test

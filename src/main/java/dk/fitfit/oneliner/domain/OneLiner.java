@@ -8,8 +8,7 @@ import java.util.List;
 @Entity
 public class OneLiner {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "oneliner_gen")
-	@SequenceGenerator(name = "oneliner_gen", sequenceName = "oneliner_seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
 	private String line;
 	private String name;

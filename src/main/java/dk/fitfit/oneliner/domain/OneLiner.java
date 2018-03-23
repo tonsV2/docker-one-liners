@@ -12,6 +12,7 @@ public class OneLiner {
 	@SequenceGenerator(name = "oneliner_gen", sequenceName = "oneliner_seq")
 	private long id;
 	private String line;
+	private String name;
 	private String description;
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "one_liner_tags",
@@ -36,6 +37,14 @@ public class OneLiner {
 
 	public void setLine(String line) {
 		this.line = line;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDescription() {

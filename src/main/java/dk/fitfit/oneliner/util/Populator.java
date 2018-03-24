@@ -77,6 +77,11 @@ public class Populator {
 				"Docker Container Top",
 				linux, opensource, alias, docker);
 
+		createOneLiner("docker-compose",
+				"d-c",
+				"Docker compose aliased to d-c",
+				alias, docker);
+
 		oneLinerService.findAll();
 	}
 

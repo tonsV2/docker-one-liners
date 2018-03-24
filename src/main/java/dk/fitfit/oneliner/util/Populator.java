@@ -57,7 +57,7 @@ public class Populator {
 						"CREATE DATABASE liftlog OWNER liftlog;\n",
 				postgresql, db, linux, opensource, sql);
 
-		createOneLiner("docker run -v \"$PWD\":/app -w /app node:alpine npm",
+		createOneLiner("docker run --rm -it -v \"$PWD\":/app -w /app node:alpine npm",
 				"npm",
 				"Node package manager...",
 				npm, javascript, alias);

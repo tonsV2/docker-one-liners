@@ -40,6 +40,10 @@ jobs:
       # run tests!
       - run: ./mvnw package -DskipTests
 
+      # build
+      - run: IMAGE_NAME=tons/docker-oneliner:$BITBUCKET_COMMIT
+      - run: docker build -t $IMAGE_NAME .
+
       # deploy
       - run: HEROKU_IMAGE_NAME=registry.heroku.com/glacial-spire-56714/web
       - run: docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com

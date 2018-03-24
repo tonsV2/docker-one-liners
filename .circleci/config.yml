@@ -1,64 +1,26 @@
-# Java Maven CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-java/ for more details
-#
 version: 2
 jobs:
-  test:
-    docker:
-      - image: circleci/openjdk:8-jdk
-    steps:
-      - checkout
-      - run: ./mvnw clean test
   build:
     docker:
-      # specify the version you desire here
-#      - image: circleci/openjdk:8-jdk
       - image: docker:17.05.0-ce-git
-
-    parallelism: 3
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-    working_directory: ~/repo
-
-    environment:
-      # Customize the JVM maximum heap limit
-      MAVEN_OPTS: -Xmx3200m
-
     steps:
       - checkout
       - setup_remote_docker
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "pom.xml" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
-#      - run: ./mvnw dependency:go-offline
-
-      - save_cache:
-          paths:
-            - ~/.m2
-          key: v1-dependencies-{{ checksum "pom.xml" }}
-
-      # run tests!
-      #- run: ls -lah && docker run --rm -v "$(pwd)":/app -w /app openjdk:8-jdk-alpine ./mvnw -e clean test
-
-      # build
       - run: |
           export IMAGE_NAME=tons/docker-oneliner:$CIRCLE_BUILD_NUM
-# TODO: Use cache
           docker build -t $IMAGE_NAME .
 
           export HEROKU_IMAGE_NAME=registry.heroku.com/glacial-spire-56714/web
           docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
           docker tag $IMAGE_NAME $HEROKU_IMAGE_NAME
           docker push $HEROKU_IMAGE_NAME
+
+  test:
+    docker:
+      - image: circleci/openjdk:8-jdk
+    steps:
+      - checkout
+      - run: ./mvnw clean test
 
 workflows:
   version: 2

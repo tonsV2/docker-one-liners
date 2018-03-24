@@ -1,6 +1,9 @@
 pipeline {
     stages {
         stage('Deploy jar') {
+            agent {
+                any
+            }
             steps {
               sh 'export IMAGE_NAME=tons/docker-oneliner:$BUILD_NUMBER'
               sh 'docker build -t $IMAGE_NAME .'

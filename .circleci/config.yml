@@ -59,3 +59,10 @@ jobs:
           docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
           docker tag $IMAGE_NAME $HEROKU_IMAGE_NAME
           docker push $HEROKU_IMAGE_NAME
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test

@@ -4,6 +4,12 @@
 #
 version: 2
 jobs:
+  test:
+    docker:
+      - image: circleci/openjdk:8-jdk
+    steps:
+      - checkout
+      - run: ./mvnw clean test
   build:
     docker:
       # specify the version you desire here
@@ -46,6 +52,7 @@ jobs:
       # build
       - run: |
           export IMAGE_NAME=tons/docker-oneliner:$CIRCLE_BUILD_NUM
+# TODO: Use cache
           docker build -t $IMAGE_NAME .
 
           export HEROKU_IMAGE_NAME=registry.heroku.com/glacial-spire-56714/web

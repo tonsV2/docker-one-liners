@@ -31,7 +31,7 @@ node {
 */
 
     stage('Run tests') {
-        sh './mvnw clean test -Dspring.profiles.active=test'
+//        sh './mvnw clean test -Dspring.profiles.active=test'
     }
 
     stage('Deploy jar') {

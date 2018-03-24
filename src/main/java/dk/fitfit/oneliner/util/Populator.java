@@ -72,7 +72,7 @@ public class Populator {
 				"Java Build Tool",
 				linux, opensource, alias, java);
 
-		createOneLiner("docker run --rm -ti -v /var/run/docker.sock:/var/run/docker.sock  quay.io/vektorlab/ctop:latest",
+		createOneLiner("docker run --rm -ti -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest",
 				"ctop",
 				"Docker Container Top",
 				linux, opensource, alias, docker);

@@ -23,7 +23,7 @@ public class Tag {
 	@Transient
 	private long rank;
 
-	private Tag() {
+	public Tag() {
 		// For hibernate
 	}
 

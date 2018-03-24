@@ -30,7 +30,7 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: mvn dependency:go-offline
+      - run: ./mvnw dependency:go-offline
 
       - save_cache:
           paths:
@@ -38,5 +38,10 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
         
       # run tests!
-      - run: mvn integration-test
+      - run: ./mvnw package -DskipTests
 
+      # deploy
+      - run: HEROKU_IMAGE_NAME=registry.heroku.com/glacial-spire-56714/web
+      - run: docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
+      - run: docker tag $IMAGE_NAME $HEROKU_IMAGE_NAME
+      - run: docker push $HEROKU_IMAGE_NAME

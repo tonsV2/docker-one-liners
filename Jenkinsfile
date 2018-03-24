@@ -1,7 +1,21 @@
-// https://jenkins.io/doc/book/pipeline/jenkinsfile/
+pipeline {
+    stages {
+        stage('Deploy jar') {
+            steps {
+              sh 'export IMAGE_NAME=tons/docker-oneliner:$BUILD_NUMBER'
+              sh 'docker build -t $IMAGE_NAME .'
 
-node {
+              sh 'export HEROKU_IMAGE_NAME=registry.heroku.com/glacial-spire-56714/web'
+              sh 'docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com'
+              sh 'docker tag $IMAGE_NAME $HEROKU_IMAGE_NAME'
+              sh 'docker push $HEROKU_IMAGE_NAME'
+            }
+        }
+    }
+}
+
 /*
+node {
     stage('Checkout') {
         git url: 'http://gitlab/project/docker-one-liners.git', branch: 'master'
     }
@@ -28,7 +42,6 @@ node {
             app.push("latest")
         }
     }
-*/
 
     stage('Run tests') {
 //        sh './mvnw clean test -Dspring.profiles.active=test'
@@ -45,3 +58,4 @@ node {
     }
 
 }
+*/

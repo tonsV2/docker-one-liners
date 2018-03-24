@@ -14,7 +14,7 @@ public interface TagServiceInterface {
 
 	List<Tag> findAll();
 
-	Tag findOne(long id);
+	Tag getOne(long id);
 
 	long getRank(long id);
 }

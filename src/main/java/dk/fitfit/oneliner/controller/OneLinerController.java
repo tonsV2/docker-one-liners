@@ -28,12 +28,12 @@ public class OneLinerController {
 
 	@GetMapping("/oneliners/{id}")
 	public OneLiner getOneLiner(@PathVariable long id) {
-		return oneLinerService.findOne(id);
+		return oneLinerService.getOne(id);
 	}
 
 	@GetMapping("/oneliners/{id}/tags")
 	public List<Tag> getTags(@PathVariable long id) {
-		return oneLinerService.findOne(id).getTags();
+		return oneLinerService.getOne(id).getTags();
 	}
 
 	// TODO: Shouldn't be post and shouldn't be @RequestBody

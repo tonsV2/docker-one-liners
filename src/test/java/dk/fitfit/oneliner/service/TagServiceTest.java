@@ -86,12 +86,12 @@ public class TagServiceTest {
 	@Test
 	public void findOne() throws Exception {
 		long tagId = 1L;
-		when(tagRepository.findOne(tagId)).thenReturn(tag1);
+		when(tagRepository.getOne(tagId)).thenReturn(tag1);
 
-		Tag actual = tagService.findOne(1L);
+		Tag actual = tagService.getOne(1L);
 
 		assertSame(tag1, actual);
-		verify(tagRepository).findOne(tagId);
+		verify(tagRepository).getOne(tagId);
 	}
 
 	@Test

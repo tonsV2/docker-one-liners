@@ -36,8 +36,8 @@ public class TagService implements TagServiceInterface {
 	}
 
 	@Override
-	public Tag findOne(long id) {
-		return tagRepository.findOne(id);
+	public Tag getOne(long id) {
+		return tagRepository.getOne(id);
 	}
 
 	@Override

@@ -78,12 +78,12 @@ public class OneLinerServiceTest {
 	public void findOne() throws Exception {
 		long id = 1;
 		when(oneLiner1.getId()).thenReturn(id);
-		when(oneLinerRepository.findOne(anyLong())).thenReturn(oneLiner1);
+		when(oneLinerRepository.getOne(anyLong())).thenReturn(oneLiner1);
 
-		OneLiner actual = oneLinerService.findOne(id);
+		OneLiner actual = oneLinerService.getOne(id);
 
 		assertSame(id, actual.getId());
-		verify(oneLinerRepository).findOne(id);
+		verify(oneLinerRepository).getOne(id);
 	}
 
 }

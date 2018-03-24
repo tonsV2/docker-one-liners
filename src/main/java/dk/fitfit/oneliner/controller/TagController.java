@@ -30,7 +30,7 @@ public class TagController {
 
 	@GetMapping("/tags/{id}")
 	public Tag getTag(@PathVariable long id) {
-		return tagService.findOne(id);
+		return tagService.getOne(id);
 	}
 
 	@GetMapping("/tags/{id}/rank")

@@ -31,7 +31,7 @@ public class OneLinerService implements OneLinerServiceInterface {
 	}
 
 	@Override
-	public OneLiner findOne(long id) {
-		return oneLinerRepository.findOne(id);
+	public OneLiner getOne(long id) {
+		return oneLinerRepository.getOne(id);
 	}
 }

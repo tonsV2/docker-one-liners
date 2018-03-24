@@ -12,5 +12,5 @@ public interface OneLinerServiceInterface {
 
 	OneLiner save(OneLiner oneLiner);
 
-	OneLiner findOne(long id);
+	OneLiner getOne(long id);
 }

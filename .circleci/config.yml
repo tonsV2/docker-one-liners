@@ -41,7 +41,7 @@ jobs:
           key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests!
-      - run: ls -lah && docker run --rm -v "$(pwd)":/app -w /app openjdk:8-jdk-alpine ./mvnw -e clean test
+      #- run: ls -lah && docker run --rm -v "$(pwd)":/app -w /app openjdk:8-jdk-alpine ./mvnw -e clean test
 
       # build
       - run: |

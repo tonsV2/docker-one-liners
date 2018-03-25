@@ -8,10 +8,10 @@ import org.springframework.context.annotation.Bean
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
 
 @SpringBootApplication
-open class DockerOneLinerApplication {
+class DockerOneLinerApplication {
 
     @Bean
-    open fun mappingJackson2HttpMessageConverter(): MappingJackson2HttpMessageConverter {
+    fun mappingJackson2HttpMessageConverter(): MappingJackson2HttpMessageConverter {
         val mapper = ObjectMapper()
         mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
         return MappingJackson2HttpMessageConverter(mapper)

@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("/api")
 open class OneLinerController(private val oneLinerService: OneLinerServiceInterface) {
-/*
 
     // TODO: n+1?
     // TODO: n+1?
@@ -26,7 +25,6 @@ open class OneLinerController(private val oneLinerService: OneLinerServiceInterf
     fun getTags(@PathVariable id: Long): List<Tag> {
         return oneLinerService.getOne(id).tags
     }
-*/
 
     // TODO: Shouldn't be post and shouldn't be @RequestBody
     @PostMapping("/findByAllTags")

@@ -28,3 +28,5 @@ workflows:
     jobs:
       - test
       - build
+
+# TODO: Branch specific exec and manual approval for realease branch... https://circleci.com/docs/2.0/workflows/

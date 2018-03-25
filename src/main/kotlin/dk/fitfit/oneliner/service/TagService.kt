@@ -11,11 +11,9 @@ class TagService(private val tagRepository: TagRepository) : TagServiceInterface
         return tagRepository.findTagsByNameIgnoreCaseStartingWith(name)
     }
 
-/*
     override fun findTagsByRank(): Set<Tag> {
         return tagRepository.findTagsByRank()
     }
-*/
 
     override fun save(tag: Tag): Tag {
         return tagRepository.save(tag)

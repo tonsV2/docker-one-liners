@@ -5,7 +5,7 @@ import dk.fitfit.oneliner.domain.Tag
 interface TagServiceInterface {
     fun findTagsStartingWith(name: String): Set<Tag>
 
-//    fun findTagsByRank(): Set<Tag>
+    fun findTagsByRank(): Set<Tag>
 
     fun save(tag: Tag): Tag
 

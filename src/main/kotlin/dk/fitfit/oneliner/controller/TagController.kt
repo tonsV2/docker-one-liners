@@ -13,11 +13,11 @@ class TagController(private val tagService: TagServiceInterface) {
     val tags: List<Tag>
         @GetMapping("/tags")
         get() = tagService.findAll()
-/*
+
     val tagsByRank: Set<Tag>
         @GetMapping("/tagsByRank")
         get() = tagService.findTagsByRank()
-*/
+
     @PostMapping("/tags")
     fun postTag(@RequestBody tag: Tag): ResponseEntity<Tag> {
         return ResponseEntity(tagService.save(tag), HttpStatus.CREATED)

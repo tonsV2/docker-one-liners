@@ -82,10 +82,7 @@ class Populator(private val oneLinerService: OneLinerServiceInterface, private v
     }
 
     private fun createTag(name: String, description: String): Tag {
-        //val tag = Tag(name, description)
-        val tag = Tag()
-        tag.name = name
-        tag.description = description
+        val tag = Tag(name, description)
         return tagService.save(tag)
     }
 
@@ -94,7 +91,7 @@ class Populator(private val oneLinerService: OneLinerServiceInterface, private v
         oneLiner.line = line
         oneLiner.name = name
         oneLiner.description = description
-        oneLiner.tags = mutableListOf(*tags)
+        oneLiner.tags = listOf(*tags)
         return oneLinerService.save(oneLiner)
     }
 

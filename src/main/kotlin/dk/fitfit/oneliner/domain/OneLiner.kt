@@ -14,7 +14,7 @@ class OneLiner {
     var description: String? = null
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "one_liner_tags",
-            joinColumns = arrayOf(JoinColumn(name = "one_liner_id", referencedColumnName = "id")),
-            inverseJoinColumns = arrayOf(JoinColumn(name = "tag_id", referencedColumnName = "id")))
-    var tags: MutableList<Tag> = ArrayList()
+            joinColumns = [(JoinColumn(name = "one_liner_id", referencedColumnName = "id"))],
+            inverseJoinColumns = [(JoinColumn(name = "tag_id", referencedColumnName = "id"))])
+    var tags: List<Tag> = ArrayList()
 }

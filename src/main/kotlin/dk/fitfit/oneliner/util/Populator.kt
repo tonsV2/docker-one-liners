@@ -78,6 +78,11 @@ class Populator(private val oneLinerService: OneLinerServiceInterface, private v
                 "Docker compose aliased to d-c",
                 alias, docker)
 
+        createOneLiner("docker-compose",
+                "dc",
+                "Docker compose aliased to dc",
+                alias, docker)
+
         oneLinerService.findAll()
     }
 
@@ -91,7 +96,7 @@ class Populator(private val oneLinerService: OneLinerServiceInterface, private v
         oneLiner.line = line
         oneLiner.name = name
         oneLiner.description = description
-        oneLiner.tags = listOf(*tags)
+        oneLiner.tags = mutableListOf(*tags)
         return oneLinerService.save(oneLiner)
     }
 

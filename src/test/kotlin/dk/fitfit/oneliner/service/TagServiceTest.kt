@@ -17,16 +17,16 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertSame
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
-/*
+
 @RunWith(SpringJUnit4ClassRunner::class)
 class TagServiceTest {
     private var tagService: TagServiceInterface? = null
     @Mock
-    private val tagRepository: TagRepository? = null
+    private lateinit var tagRepository: TagRepository
     @Mock
-    private val tag1: Tag? = null
+    private val tag1: Tag = Tag()
     @Mock
-    private val tag2: Tag? = null
+    private val tag2: Tag = Tag()
 
     @Before
     @Throws(Exception::class)
@@ -41,7 +41,7 @@ class TagServiceTest {
         val name = "s"
         val expected = Sets.newSet<Tag>(tag1, tag2)
 
-        `when`(tagRepository!!.findTagsByNameIgnoreCaseStartingWith(name)).thenReturn(expected)
+        `when`(tagRepository.findTagsByNameIgnoreCaseStartingWith(name)).thenReturn(expected)
 
         val actual = tagService!!.findTagsStartingWith(name)
 
@@ -52,10 +52,10 @@ class TagServiceTest {
     @Test
     @Throws(Exception::class)
     fun findTagsByRank() {
-        `when`(tag1!!.rank).thenReturn(1L)
-        `when`(tag2!!.rank).thenReturn(2L)
+        `when`(tag1.rank).thenReturn(1L)
+        `when`(tag2.rank).thenReturn(2L)
         val expected = Sets.newSet(tag1, tag2)
-        `when`(tagRepository!!.findTagsByRank()).thenReturn(expected)
+        `when`(tagRepository.findTagsByRank()).thenReturn(expected)
 
         val actual = ArrayList(tagService!!.findTagsByRank())
 
@@ -66,7 +66,7 @@ class TagServiceTest {
 
     @Test
     fun save() {
-        `when`(tagRepository!!.save(tag1!!)).thenReturn(tag1)
+        `when`(tagRepository.save(tag1!!)).thenReturn(tag1)
 
         val actual = tagService!!.save(tag1)
 
@@ -79,7 +79,7 @@ class TagServiceTest {
     fun findAll() {
         val expected = Lists.newArrayList<Tag>(tag1, tag2)
 
-        `when`(tagRepository!!.findAll()).thenReturn(expected)
+        `when`(tagRepository.findAll()).thenReturn(expected)
 
         val actual = tagService!!.findAll()
 
@@ -91,7 +91,7 @@ class TagServiceTest {
     @Throws(Exception::class)
     fun findOne() {
         val tagId = 1L
-        `when`(tagRepository!!.getOne(tagId)).thenReturn(tag1)
+        `when`(tagRepository.getOne(tagId)).thenReturn(tag1)
 
         val actual = tagService!!.getOne(1L)
 
@@ -104,7 +104,7 @@ class TagServiceTest {
     fun getRank() {
         val tagId = 1L
         val rank = 2L
-        `when`(tagRepository!!.getRank(tagId)).thenReturn(rank)
+        `when`(tagRepository.getRank(tagId)).thenReturn(rank)
 
         val actual = tagService!!.getRank(tagId)
 
@@ -113,4 +113,3 @@ class TagServiceTest {
     }
 
 }
-*/

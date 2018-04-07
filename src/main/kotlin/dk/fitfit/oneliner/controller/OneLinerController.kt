@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api")
-open class OneLinerController(private val oneLinerService: OneLinerServiceInterface) {
+class OneLinerController(private val oneLinerService: OneLinerServiceInterface) {
 
     // TODO: n+1?
     // TODO: n+1?
@@ -26,9 +26,9 @@ open class OneLinerController(private val oneLinerService: OneLinerServiceInterf
         return oneLinerService.getOne(id).tags
     }
 
-    // TODO: Shouldn't be post and shouldn't be @RequestBody
+    // TODO: Shouldn't be post and shouldn't be @RequestBody... Why not?
     @PostMapping("/findByAllTags")
-    open fun findByAllTags(@RequestBody tags: Set<String>): Set<OneLiner> {
+    fun findByAllTags(@RequestBody tags: Set<String>): Set<OneLiner> {
         return oneLinerService.findByAllTags(tags)
     }
 }

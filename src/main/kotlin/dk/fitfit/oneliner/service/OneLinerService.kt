@@ -2,6 +2,8 @@ package dk.fitfit.oneliner.service
 
 import dk.fitfit.oneliner.domain.OneLiner
 import dk.fitfit.oneliner.repository.OneLinerRepository
+import javassist.NotFoundException
+import org.springframework.data.domain.Example
 import org.springframework.stereotype.Service
 
 @Service
@@ -20,6 +22,6 @@ class OneLinerService(private val oneLinerRepository: OneLinerRepository) : OneL
     }
 
     override fun getOne(id: Long): OneLiner {
-        return oneLinerRepository.getOne(id)
+        return oneLinerRepository.findById(id).get()
     }
 }

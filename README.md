@@ -1,3 +1,6 @@
+Add alias front end? https://github.com/isamert/addalias
+
+
 # Http
 ## Find tags by rank
 http localhost:8081/api/tagsByRank

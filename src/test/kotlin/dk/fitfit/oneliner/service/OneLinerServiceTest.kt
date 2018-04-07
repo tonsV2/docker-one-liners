@@ -2,25 +2,22 @@ package dk.fitfit.oneliner.service
 
 import dk.fitfit.oneliner.domain.OneLiner
 import dk.fitfit.oneliner.repository.OneLinerRepository
+import org.junit.Assert.assertSame
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.ArgumentMatchers
 import org.mockito.Mock
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 import org.mockito.internal.util.collections.Sets
-import org.mockito.runners.MockitoJUnitRunner
+import org.mockito.junit.MockitoJUnitRunner
+import java.util.*
 
-import java.util.Arrays
-
-import org.junit.Assert.assertSame
-import org.mockito.Matchers.any
-import org.mockito.Matchers.anyLong
-import org.mockito.Mockito.verify
-import org.mockito.Mockito.`when`
-/*
 @RunWith(MockitoJUnitRunner::class)
 class OneLinerServiceTest {
-    private var oneLinerService: OneLinerServiceInterface? = null
+    private lateinit var oneLinerService: OneLinerServiceInterface
     @Mock
     private val oneLinerRepository: OneLinerRepository? = null
 
@@ -33,7 +30,7 @@ class OneLinerServiceTest {
     @Throws(Exception::class)
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        oneLinerService = OneLinerService(oneLinerRepository)
+        oneLinerService = OneLinerService(oneLinerRepository!!)
     }
 
     @Test
@@ -90,4 +87,3 @@ class OneLinerServiceTest {
     }
 
 }
-*/

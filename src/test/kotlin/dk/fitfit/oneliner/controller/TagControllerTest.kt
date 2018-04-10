@@ -40,8 +40,8 @@ class TagControllerTest {
                 .andExpect(jsonPath("length($)").value(18))
                 .andExpect(jsonPath("$.[0].name").value("alias"))
                 // TODO: Why does order differs from: [tons@localhost docker-one-liner]$ http localhost:8081/api/tagsByRank
-                .andExpect(jsonPath("$.[12].name").value("javascript"))
-                .andExpect(jsonPath(".rank").value(Lists.newArrayList(5, 4, 4, 3, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)))
+                .andExpect(jsonPath("$.[12].name").value("java"))
+                .andExpect(jsonPath(".rank").value(Lists.newArrayList(6, 5, 4, 3, 3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0)))
     }
 
     @Test
@@ -100,12 +100,13 @@ class TagControllerTest {
     @Test
     @Throws(Exception::class)
     fun getTag_ShouldReturnATag() {
-        val id: Long = 10
+        val id: Long = 12
 
         mockMvc!!.perform(get("/api/tags/" + id))
+                .andDo(print())
                 .andExpect(status().isOk)
-                .andExpect(jsonPath("length($)").value(4))
-                .andExpect(jsonPath("$.id").value(10))
+                .andExpect(jsonPath("length($)").value(6))
+                .andExpect(jsonPath("$.id").value(0))
                 .andExpect(jsonPath("$.name").value("NoSql"))
                 .andExpect(jsonPath("$.description").value("NoSql database..."))
     }

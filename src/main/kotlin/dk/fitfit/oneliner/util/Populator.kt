@@ -51,6 +51,7 @@ class Populator(private val oneLinerService: OneLinerServiceInterface, private v
                 "psql -h localhost -p 5432 -U postgres\n" +
                         "CREATE USER user WITH PASSWORD 'password';\n" +
                         "CREATE DATABASE liftlog OWNER liftlog;\n",
+//                postgresql, db, linux, opensource, sql, docker)
                 postgresql, db, linux, opensource, sql)
 
         createOneLiner("docker run --rm -it -v \"\$PWD\":/app -w /app node:alpine npm",
@@ -66,7 +67,7 @@ class Populator(private val oneLinerService: OneLinerServiceInterface, private v
         createOneLiner("docker run -it --rm -v \"\$PWD\":/app -v \"\$HOME\"/.m2:/root/.m2 -w /app maven:3.5-jdk-8-alpine mvn",
                 "mvn",
                 "Java Build Tool",
-                linux, opensource, alias, java)
+                linux, alias, java, maven)
 
         createOneLiner("docker run --rm -ti -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest",
                 "ctop",
@@ -76,12 +77,12 @@ class Populator(private val oneLinerService: OneLinerServiceInterface, private v
         createOneLiner("docker-compose",
                 "d-c",
                 "Docker compose aliased to d-c",
-                alias, docker)
+                alias, docker, opensource)
 
         createOneLiner("docker-compose",
                 "dc",
                 "Docker compose aliased to dc",
-                alias, docker)
+                alias, docker, opensource)
 
         oneLinerService.findAll()
     }

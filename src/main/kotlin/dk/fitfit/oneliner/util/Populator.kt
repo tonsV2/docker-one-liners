@@ -74,6 +74,16 @@ class Populator(private val oneLinerService: OneLinerServiceInterface, private v
                 "Docker Container Top",
                 linux, opensource, alias, docker)
 
+        createOneLiner("docker run -it -v /var/run/docker.sock:/var/run/docker.sock moncho/dry",
+                "dry",
+                "Docker Container Top",
+                linux, opensource, alias, docker)
+
+        createOneLiner("docker run -v /var/run/docker.sock:/run/docker.sock -ti -e TERM tomastomecek/sen",
+                "sen",
+                "Docker Container Top",
+                linux, opensource, alias, docker)
+
         createOneLiner("docker-compose",
                 "d-c",
                 "Docker compose aliased to d-c",

@@ -94,6 +94,21 @@ class Populator(private val oneLinerService: OneLinerServiceInterface, private v
                 "Docker compose aliased to dc",
                 alias, docker, opensource)
 
+        createOneLiner("docker run -it --rm --name nginx -v \"\$PWD\":/usr/share/nginx/html:rw -p 8000:80 nginx:alpine",
+                "webserv_nginx",
+                "Current folder exposed over http using nginx... Configuration of permissions might be required",
+                alias, docker, opensource, nginx)
+
+        createOneLiner("docker run -it --rm --name php -v \"\$PWD\":/src -w /src --net=host php:cli-alpine php -S localhost:8000",
+                "webserv_php",
+                "Current folder exposed over http using php... Configuration of permissions might be required",
+                alias, docker, opensource)
+
+        createOneLiner("docker run -it --rm --name python -v \"\$PWD\":/src -w /src --net=host python:alpine python3 -m http.server 8000",
+                "webserv",
+                "Current folder exposed over http using python... Configuration of permissions might be required",
+                alias, docker, opensource)
+
         oneLinerService.findAll()
     }
 

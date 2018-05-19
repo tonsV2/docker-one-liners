@@ -14,11 +14,10 @@ class Populator(private val oneLinerService: OneLinerServiceInterface, private v
         initialize()
     }
 
-    fun initialize() {
+    final fun initialize() {
         val maven = createTag("mvn", "Java build tool")
         val alias = createTag("alias", "Suitable for command line alias")
         val npm = createTag("npm", "Node package manager")
-        val spring = createTag("spring", "Java framework")
         val docker = createTag("docker", "Container system")
         val db = createTag("db", "Database related")
         val mysql = createTag("mysql", "Mysql the database vendor acquired by oracle")
@@ -67,7 +66,7 @@ class Populator(private val oneLinerService: OneLinerServiceInterface, private v
         createOneLiner("docker run --rm  -it --net=host -v \"\$PWD\":/app -v \"\$HOME\"/.m2:/root/.m2 -w /app maven:3.5-jdk-8-alpine mvn",
                 "mvn",
                 "Java Build Tool",
-                linux, alias, java, maven)
+                linux, alias, java, maven, apache)
 
         createOneLiner("docker run --rm -ti -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest",
                 "ctop",
@@ -83,6 +82,16 @@ class Populator(private val oneLinerService: OneLinerServiceInterface, private v
                 "sen",
                 "Docker Container Top",
                 linux, opensource, alias, docker)
+
+        createOneLiner("docker run -it --rm postgres:alpine psql",
+                "psql",
+                "Postgresql client",
+                alias, postgresql, opensource, db)
+
+        createOneLiner("docker run -it --rm mariadb mysql",
+                "mysql",
+                "Mysql client",
+                alias, mysql, opensource, db)
 
         createOneLiner("docker-compose",
                 "d-c",
@@ -108,6 +117,11 @@ class Populator(private val oneLinerService: OneLinerServiceInterface, private v
                 "webserv",
                 "Current folder exposed over http using python... Configuration of permissions might be required",
                 alias, docker, opensource)
+
+        createOneLiner("ruby -run -ehttpd . -p8000",
+                "webserv",
+                "Current folder exposed over http using ruby",
+                alias, opensource)
 
         oneLinerService.findAll()
     }

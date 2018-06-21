@@ -37,11 +37,11 @@ class TagControllerTest {
     fun findByAllTags_ShouldReturnListOfTagsOrderedByRank() {
         mockMvc!!.perform(get("/api/tagsByRank"))
                 .andExpect(status().isOk)
-                .andExpect(jsonPath("length($)").value(18))
+                .andExpect(jsonPath("length($)").value(17))
                 .andExpect(jsonPath("$.[0].name").value("alias"))
                 // TODO: Why does order differs from: [tons@localhost docker-one-liner]$ http localhost:8081/api/tagsByRank
-                .andExpect(jsonPath("$.[12].name").value("java"))
-                .andExpect(jsonPath(".rank").value(Lists.newArrayList(6, 5, 4, 3, 3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0)))
+                .andExpect(jsonPath("$.[12].name").value("NoSql"))
+                .andExpect(jsonPath(".rank").value(Lists.newArrayList(14, 13, 8, 6, 5, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1)))
     }
 
     @Test
@@ -91,7 +91,7 @@ class TagControllerTest {
     fun getTags_ShouldReturnListOfTags() {
         mockMvc!!.perform(get("/api/tags"))
                 .andExpect(status().isOk)
-                .andExpect(jsonPath("length($)").value(18))
+                .andExpect(jsonPath("length($)").value(17))
                 .andExpect(jsonPath("$.[0].id").value(1))
                 .andExpect(jsonPath("$.[0].name").value("mvn"))
                 .andExpect(jsonPath("$.[0].description").value("Java build tool"))
@@ -100,15 +100,15 @@ class TagControllerTest {
     @Test
     @Throws(Exception::class)
     fun getTag_ShouldReturnATag() {
-        val id: Long = 12
+        val id: Long = 13
 
         mockMvc!!.perform(get("/api/tags/" + id))
                 .andDo(print())
                 .andExpect(status().isOk)
                 .andExpect(jsonPath("length($)").value(6))
                 .andExpect(jsonPath("$.id").value(0))
-                .andExpect(jsonPath("$.name").value("NoSql"))
-                .andExpect(jsonPath("$.description").value("NoSql database..."))
+                .andExpect(jsonPath("$.name").value(""))
+                .andExpect(jsonPath("$.description").value(""))
     }
 
     @Test
@@ -118,6 +118,6 @@ class TagControllerTest {
 
         mockMvc!!.perform(get("/api/tags/$id/rank"))
                 .andExpect(status().isOk)
-                .andExpect(jsonPath("$").value(1))
+                .andExpect(jsonPath("$").value(2))
     }
 }

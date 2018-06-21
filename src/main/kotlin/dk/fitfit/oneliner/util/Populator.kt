@@ -14,7 +14,12 @@ class Populator(private val oneLinerService: OneLinerServiceInterface, private v
         initialize()
     }
 
-    final fun initialize() {
+// TODO: Untested
+// alias java='docker run -it --net=host openjdk:8-jre-alpine -v "$PWD":/app -w /app java'
+// alias java='docker run -it --net=host openjdk:8-jdk-alpine -v "$PWD":/app -w /app javac'
+// make groups... tag: java-dev, javascript-dev, go-dev?, database,
+
+    private final fun initialize() {
         val maven = createTag("mvn", "Java build tool")
         val alias = createTag("alias", "Suitable for command line alias")
         val npm = createTag("npm", "Node package manager")

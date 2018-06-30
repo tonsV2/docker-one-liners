@@ -17,6 +17,8 @@ class Populator(private val oneLinerService: OneLinerServiceInterface, private v
 // TODO: Untested
 // alias java='docker run -it --net=host openjdk:8-jre-alpine -v "$PWD":/app -w /app java'
 // alias java='docker run -it --net=host openjdk:8-jdk-alpine -v "$PWD":/app -w /app javac'
+// alias swagger-codegen-cli='docker run -it --rm -v "$PWD":/local swaggerapi/swagger-codegen-cli'
+//   swagger-codegen-cli generate -i http://172.17.0.1:8080/v2/api-docs -l java -o /local/whoami-java-client
 // make groups... tag: java-dev, javascript-dev, go-dev?, database,
 
     private final fun initialize() {

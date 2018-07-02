@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine as builder
+FROM openjdk:8-jdk-alpine AS builder
 WORKDIR /app
 ADD . /app
 RUN ./mvnw -DskipTests clean package

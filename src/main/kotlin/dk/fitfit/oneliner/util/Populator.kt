@@ -20,6 +20,9 @@ class Populator(private val oneLinerService: OneLinerServiceInterface, private v
 // alias swagger-codegen-cli='docker run -it --rm -v "$PWD":/local swaggerapi/swagger-codegen-cli'
 //   swagger-codegen-cli generate -i http://172.17.0.1:8080/v2/api-docs -l java -o /local/whoami-java-client
 // make groups... tag: java-dev, javascript-dev, go-dev?, database,
+// alias install-mvnw='docker run -it -v "$PWD":/app -w /app --user "$(id -u):$(id -g)" maven:alpine mvn -N io.takari:maven:wrapper'
+//    Leaves a 'ghost' folder called '?' due to permissions
+
 
     private final fun initialize() {
         val maven = createTag("mvn", "Java build tool")

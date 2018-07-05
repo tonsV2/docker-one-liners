@@ -9,7 +9,6 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 
 @SpringBootApplication
 class DockerOneLinerApplication {
-
     @Bean
     fun mappingJackson2HttpMessageConverter(): MappingJackson2HttpMessageConverter {
         val mapper = ObjectMapper()

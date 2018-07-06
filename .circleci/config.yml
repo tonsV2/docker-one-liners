@@ -15,14 +15,6 @@ jobs:
       - setup_remote_docker
       - run: |
           docker build -t $IMAGE_NAME .
-
-  push:
-    docker:
-      - image: docker:17.05.0-ce-git
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run: |
           docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
           docker push $IMAGE_NAME
 
@@ -32,6 +24,5 @@ workflows:
     jobs:
       - test
       - build
-      - push
 
 # TODO: Branch specific exec and manual approval for realease branch... https://circleci.com/docs/2.0/workflows/

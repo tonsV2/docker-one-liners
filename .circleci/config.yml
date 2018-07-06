@@ -7,13 +7,10 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: |
-          export IMAGE_NAME=tons/docker-oneliner:$CIRCLE_BUILD_NUM
+          export IMAGE_NAME=registry.heroku.com/glacial-spire-56714/web
           docker build -t $IMAGE_NAME .
-
-          export HEROKU_IMAGE_NAME=registry.heroku.com/glacial-spire-56714/web
           docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
-          docker tag $IMAGE_NAME $HEROKU_IMAGE_NAME
-          docker push $HEROKU_IMAGE_NAME
+          docker push $IMAGE_NAME
 
   test:
     docker:

@@ -7,8 +7,15 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: |
-          export IMAGE_NAME=registry.heroku.com/glacial-spire-56714/web
           docker build -t $IMAGE_NAME .
+
+  push:
+    docker:
+      - image: docker:17.05.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: |
           docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
           docker push $IMAGE_NAME
 

@@ -1,5 +1,12 @@
 version: 2
 jobs:
+  test:
+    docker:
+      - image: circleci/openjdk:8-jdk
+    steps:
+      - checkout
+      - run: ./mvnw clean test -Dspring.profiles.active=test
+
   build:
     docker:
       - image: docker:17.05.0-ce-git
@@ -19,18 +26,12 @@ jobs:
           docker login --username=_ --password=$HEROKU_API_KEY registry.heroku.com
           docker push $IMAGE_NAME
 
-  test:
-    docker:
-      - image: circleci/openjdk:8-jdk
-    steps:
-      - checkout
-      - run: ./mvnw clean test -Dspring.profiles.active=test
-
 workflows:
   version: 2
   build_and_test:
     jobs:
       - test
       - build
+      - push
 
 # TODO: Branch specific exec and manual approval for realease branch... https://circleci.com/docs/2.0/workflows/

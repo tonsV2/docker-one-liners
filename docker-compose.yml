@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   release:
-    image: tons/oneliner-backend
+    image: tons/oneliner-backend:${TAG}
     build: .
     depends_on:
       - database

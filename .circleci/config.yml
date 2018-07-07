@@ -6,7 +6,7 @@ jobs:
     steps:
       - setup_remote_docker
       - checkout
-      - run: /build-push.sh
+#      - run: /build-push.sh
 
   test:
     docker:

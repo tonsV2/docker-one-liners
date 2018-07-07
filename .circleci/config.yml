@@ -1,5 +1,12 @@
 version: 2
 jobs:
+  docker:
+    docker:
+      - image: tons/dc-ci
+    steps:
+      - checkout
+      - run: /build-push.sh
+
   test:
     docker:
       - image: circleci/openjdk:8-jdk

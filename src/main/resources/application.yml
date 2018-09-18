@@ -54,3 +54,6 @@ spring:
 
 spring:
   profiles: heroku
+
+server:
+  port: ${PORT}

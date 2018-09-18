@@ -1,12 +1,20 @@
 version: 2
 jobs:
-  build:
+  dh:
     docker:
       - image: tons/dc-ci
     steps:
       - setup_remote_docker
       - checkout
-      - run: TAG=snot /build-push.sh
+      - run: TAG=snot /ci/build-push.sh
+
+  heroku:
+    docker:
+      - image: tons/dc-ci
+    steps:
+      - setup_remote_docker
+      - checkout
+      - run: REGISTRY_USER=_ REGISTRY_PASS=$HEROKU_API_KEY REGISTRY_URL=registry.heroku.com exec /ci/build-push.sh
 
   test:
     docker:
@@ -20,6 +28,7 @@ workflows:
   build_and_test:
     jobs:
       - test
-      - build
+      - heroku
+      - dh
 
 # TODO: Branch specific exec and manual approval for realease branch... https://circleci.com/docs/2.0/workflows/

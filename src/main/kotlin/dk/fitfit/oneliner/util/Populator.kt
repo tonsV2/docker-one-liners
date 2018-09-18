@@ -63,7 +63,7 @@ class Populator(private val oneLinerService: OneLinerServiceInterface, private v
 //                postgresql, db, linux, opensource, sql, docker)
                 postgresql, db, linux, opensource, sql)
 
-        createOneLiner("docker run --rm -it --net=host -v \"\$PWD\":/app -w /app node:alpine npm",
+        createOneLiner("docker run --rm -it --net=host --user=\"\$(id -u):\$(id -g)\" -v \"\$PWD\":/app -w /app node:alpine npm",
                 "npm",
                 "Node package manager...",
                 npm, javascript, alias)
@@ -73,7 +73,7 @@ class Populator(private val oneLinerService: OneLinerServiceInterface, private v
                 "Modern HTTP benchmarking tool... https://github.com/wg/wrk",
                 linux, opensource, alias)
 
-        createOneLiner("docker run --rm  -it --net=host -v \"\$PWD\":/app -v \"\$HOME\"/.m2:/root/.m2 -w /app maven:3.5-jdk-8-alpine mvn",
+        createOneLiner("docker run --rm  -it --net=host --user=\"\$(id -u):\$(id -g)\" -v \"\$PWD\":/app -v \"\$HOME\"/.m2:/root/.m2 -w /app maven:3.5-jdk-8-alpine mvn",
                 "mvn",
                 "Java Build Tool",
                 linux, alias, java, maven, apache)

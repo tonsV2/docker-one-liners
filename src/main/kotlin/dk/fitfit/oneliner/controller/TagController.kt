@@ -42,4 +42,9 @@ class TagController(private val tagService: TagServiceInterface) {
     fun getTagsStartingWithPath(@PathVariable name: String): Set<Tag> {
         return tagService.findTagsStartingWith(name)
     }
+
+    @GetMapping("/tags/fuzzySearchDescription/{searchString}")
+    fun getFuzzySearchDescription(@PathVariable searchString: String): MutableList<*> {
+        return tagService.fuzzySearchDescription(searchString)
+    }
 }

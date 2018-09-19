@@ -14,4 +14,6 @@ interface TagServiceInterface {
     fun getOne(id: Long): Tag
 
     fun getRank(id: Long): Long
+
+    fun fuzzySearchDescription(searchString: String): MutableList<*>
 }

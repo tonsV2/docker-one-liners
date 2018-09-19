@@ -17,12 +17,15 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertSame
 import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
+import javax.persistence.EntityManager
 
 @RunWith(SpringJUnit4ClassRunner::class)
 class TagServiceTest {
     private var tagService: TagServiceInterface? = null
     @Mock
     private lateinit var tagRepository: TagRepository
+    @Mock
+    private lateinit var entityManager: EntityManager
     @Mock
     private val tag1: Tag = Tag()
     @Mock
@@ -32,7 +35,7 @@ class TagServiceTest {
     @Throws(Exception::class)
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        tagService = TagService(tagRepository)
+        tagService = TagService(entityManager, tagRepository)
     }
 
     @Test

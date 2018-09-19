@@ -1,10 +1,13 @@
 package dk.fitfit.oneliner.domain
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import org.hibernate.search.annotations.Field
+import org.hibernate.search.annotations.Indexed
 
 import javax.persistence.*
 
 @Entity
+@Indexed
 @Table(indexes = [
     Index(name = "tag_name_idx", columnList = "name"),
     Index(name = "tag_description_idx", columnList = "description")
@@ -15,6 +18,7 @@ open class Tag(
     val id: Long = 0,
     @Column(unique = true)
     var name: String = "",
+    @Field
     var description: String = "",
     @Transient
     open var rank: Long = 0,

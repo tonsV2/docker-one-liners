@@ -32,6 +32,11 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>com.vlkan.hrrs</groupId>
 			<artifactId>hrrs-servlet-filter-base64</artifactId>
 			<version>LATEST</version>

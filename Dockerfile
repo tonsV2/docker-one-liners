@@ -9,4 +9,4 @@ WORKDIR /app
 COPY --from=builder /src/target/*-0.0.1-SNAPSHOT.jar .
 USER appuser
 CMD exec java -Xmx512M -Xms256M -jar *.jar
-HEALTHCHECK --interval=10s --timeout=3s CMD wget --quiet --tries=1 --spider http://localhost:8080/health || exit 1
+HEALTHCHECK --interval=10s --timeout=3s CMD wget --quiet --tries=1 --spider http://localhost:8080/actuator/health || exit 1

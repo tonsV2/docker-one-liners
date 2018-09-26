@@ -63,7 +63,7 @@ class Populator(private val oneLinerService: OneLinerServiceInterface, private v
 //                postgresql, db, linux, opensource, sql, docker)
                 postgresql, db, linux, opensource, sql)
 
-        createOneLiner("docker run --rm -it --net=host --user=\"\$(id -u):\$(id -g)\" -v \"\$PWD\":/app -w /app node:alpine npm",
+        createOneLiner("docker run --rm -it --net=host --user=\"\$(id -u):\$(id -g)\" -v \"\$HOME/.npm:/home/node/.npm\" -v \"\$PWD:/app\" -w /app node:alpine npm",
                 "npm",
                 "Node package manager...",
                 npm, javascript, alias)

@@ -31,7 +31,8 @@ services:
       retries: 3
 
   test:
-    image: tons/oneliner-backend:release
+    image: openjdk:8-jdk-alpine
+    working_dir: /src
     volumes:
       - .:/src
     working_dir: /src

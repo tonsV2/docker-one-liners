@@ -35,8 +35,9 @@ services:
     working_dir: /src
     volumes:
       - .:/src
-    working_dir: /src
-    command: ./mvnw clean test -Dspring.profiles.active=test
+    environment:
+      SPRING_PROFILES_ACTIVE: test
+    command: ./mvnw clean test
 
 volumes:
   database: {}

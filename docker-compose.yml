@@ -30,5 +30,12 @@ services:
       timeout: 3s
       retries: 3
 
+  test:
+    image: tons/oneliner-backend:release
+    volumes:
+      - .:/src
+    working_dir: /src
+    command: ./mvnw clean test -Dspring.profiles.active=test
+
 volumes:
   database: {}

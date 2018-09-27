@@ -17,7 +17,6 @@ services:
 
   database:
     image: postgres:11-alpine
-    command: /bin/sh -c "sed -ri \"s/#log_statement = 'none'/log_statement = 'all'/\" /var/lib/postgresql/data/postgresql.conf && su postgres -c postgres"
     environment:
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}

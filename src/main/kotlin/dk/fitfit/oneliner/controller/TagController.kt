@@ -1,14 +1,21 @@
 package dk.fitfit.oneliner.controller
 
+import dk.fitfit.oneliner.controller.validator.TagValidator
 import dk.fitfit.oneliner.domain.Tag
 import dk.fitfit.oneliner.service.TagServiceInterface
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.WebDataBinder
 import org.springframework.web.bind.annotation.*
+import javax.validation.Valid
 
 @RestController
 @RequestMapping("/api")
 class TagController(private val tagService: TagServiceInterface) {
+    @InitBinder("tag")
+    fun tagInitBinder(dataBinder: WebDataBinder) {
+        dataBinder.validator = TagValidator()
+    }
 
     val tags: List<Tag>
         @GetMapping("/tags")
@@ -19,7 +26,7 @@ class TagController(private val tagService: TagServiceInterface) {
         get() = tagService.findTagsByRank()
 
     @PostMapping("/tags")
-    fun postTag(@RequestBody tag: Tag): ResponseEntity<Tag> {
+    fun postTag(@Valid @RequestBody tag: Tag): ResponseEntity<Tag> {
         return ResponseEntity(tagService.save(tag), HttpStatus.CREATED)
     }
 

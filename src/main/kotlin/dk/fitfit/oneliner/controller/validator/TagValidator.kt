@@ -12,8 +12,8 @@ class TagValidator : Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "required.name", "Tag name is required.")
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "required.description", "Tag description is required.")
         val tag = target as Tag
-        val regex = Regex("\\s")
-        if (tag.name.contains(regex)) {
+        val whitespace = Regex("\\s")
+        if (tag.name.contains(whitespace)) {
             errors.reject("required.noWhitespaceInTagName", "Tag name can't contain whitespace.")
         }
     }

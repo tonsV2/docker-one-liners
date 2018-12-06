@@ -6,7 +6,6 @@ import dk.fitfit.oneliner.service.OneLinerServiceInterface
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api")
 class OneLinerController(private val oneLinerService: OneLinerServiceInterface) {
 
     // TODO: n+1?

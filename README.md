@@ -3,16 +3,16 @@ Add alias front end? https://github.com/isamert/addalias
 
 # Http
 ## Find tags by rank
-http :8080/api/tagsByRank
+http :8080/tagsByRank
 
 ## Search tags by partial tag
-http :8080/api/tagsStartingWith?name=java
+http :8080/tagsStartingWith?name=java
 
 ## Search oneliners by all tags
-http :8080/api/findByAllTags <<< '["db", "sql"]'
+http :8080/findByAllTags <<< '["db", "sql"]'
 
 ## Post new tag
-http :8080/api/tags <<< '{"name": "name", "description": "description"}'
+http :8080/tags <<< '{"name": "name", "description": "description"}'
 
 # Docker
 ## Test

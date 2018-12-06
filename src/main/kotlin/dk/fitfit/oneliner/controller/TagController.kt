@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
 @RestController
-@RequestMapping("/api")
 class TagController(private val tagService: TagServiceInterface) {
     @InitBinder("tag")
     fun tagInitBinder(dataBinder: WebDataBinder) {

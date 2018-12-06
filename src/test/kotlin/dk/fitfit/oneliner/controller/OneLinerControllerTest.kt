@@ -40,7 +40,7 @@ class OneLinerControllerTest {
         val mapper = ObjectMapper()
         val tags = mapper.writeValueAsString(Lists.newArrayList("db", "sql"))
 
-        val postRequest = post("/api/findByAllTags")
+        val postRequest = post("/findByAllTags")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(tags)
 
@@ -55,7 +55,7 @@ class OneLinerControllerTest {
     @Test
     @Throws(Exception::class)
     fun findAll_ShouldReturnListOfOneLiners() {
-        mockMvc!!.perform(get("/api/oneliners"))
+        mockMvc!!.perform(get("/oneliners"))
                 .andExpect(status().isOk)
                 .andExpect(jsonPath("length($)").value(17))
                 .andExpect(jsonPath("$.[0].line").value("docker run --name mysql -e MYSQL_ROOT_PASSWORD=skummet -p 3306:3306 -dt mysql:latest"))
@@ -69,7 +69,7 @@ class OneLinerControllerTest {
     fun findOne_ShouldReturnAOneLiner() {
         val id = 1
 
-        mockMvc!!.perform(get("/api/oneliners/" + id))
+        mockMvc!!.perform(get("/oneliners/" + id))
                 .andExpect(status().isOk)
                 .andExpect(jsonPath("length($)").value(4))
                 .andExpect(jsonPath("$.id").value("1"))
@@ -88,7 +88,7 @@ class OneLinerControllerTest {
     fun getTags_ShouldReturnAListOfTags() {
         val id = 1
 
-        mockMvc!!.perform(get("/api/oneliners/$id/tags"))
+        mockMvc!!.perform(get("/oneliners/$id/tags"))
                 .andExpect(status().isOk)
                 .andExpect(jsonPath("length($)").value(4))
                 .andExpect(jsonPath("$[0].id").value(1))

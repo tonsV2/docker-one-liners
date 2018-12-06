@@ -35,11 +35,11 @@ class TagControllerTest {
     @Test
     @Throws(Exception::class)
     fun findByAllTags_ShouldReturnListOfTagsOrderedByRank() {
-        mockMvc!!.perform(get("/api/tagsByRank"))
+        mockMvc!!.perform(get("/tagsByRank"))
                 .andExpect(status().isOk)
                 .andExpect(jsonPath("length($)").value(17))
                 .andExpect(jsonPath("$.[0].name").value("alias"))
-                // TODO: Why does order differs from: [tons@localhost docker-one-liner]$ http localhost:8081/api/tagsByRank
+                // TODO: Why does order differs from: [tons@localhost docker-one-liner]$ http localhost:8081/tagsByRank
                 .andExpect(jsonPath("$.[12].name").value("NoSql"))
                 .andExpect(jsonPath(".rank").value(Lists.newArrayList(14, 13, 8, 6, 5, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1)))
     }
@@ -49,7 +49,7 @@ class TagControllerTest {
     fun findTagsStartingWith_ShouldReturnListOfTagsStartingWithTheArgument() {
         val argument = "java"
 
-        mockMvc!!.perform(get("/api/tagsStartingWith?name=" + argument))
+        mockMvc!!.perform(get("/tagsStartingWith?name=" + argument))
                 .andExpect(status().isOk)
                 .andExpect(jsonPath("length($)").value(2))
                 .andExpect(jsonPath("$.[0].name").value("java"))
@@ -61,7 +61,7 @@ class TagControllerTest {
     fun findTagsStartingWithPath_ShouldReturnListOfTagsStartingWithTheArgument() {
         val argument = "java"
 
-        mockMvc!!.perform(get("/api/tagsStartingWith/" + argument))
+        mockMvc!!.perform(get("/tagsStartingWith/" + argument))
                 .andExpect(status().isOk)
                 .andExpect(jsonPath("length($)").value(2))
                 .andExpect(jsonPath("$.[0].name").value("java"))
@@ -74,7 +74,7 @@ class TagControllerTest {
         val mapper = ObjectMapper()
         val tag = Tag("name", "description")
 
-        val postRequest = post("/api/tags")
+        val postRequest = post("/tags")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mapper.writeValueAsString(tag))
 
@@ -89,7 +89,7 @@ class TagControllerTest {
     @Test
     @Throws(Exception::class)
     fun getTags_ShouldReturnListOfTags() {
-        mockMvc!!.perform(get("/api/tags"))
+        mockMvc!!.perform(get("/tags"))
                 .andExpect(status().isOk)
                 .andExpect(jsonPath("length($)").value(17))
                 .andExpect(jsonPath("$.[0].id").value(1))
@@ -102,7 +102,7 @@ class TagControllerTest {
     fun getTag_ShouldReturnATag() {
         val id: Long = 13
 
-        mockMvc!!.perform(get("/api/tags/" + id))
+        mockMvc!!.perform(get("/tags/" + id))
                 .andDo(print())
                 .andExpect(status().isOk)
                 .andExpect(jsonPath("length($)").value(6))
@@ -116,7 +116,7 @@ class TagControllerTest {
     fun getTagRank_ShouldReturnTheTagsRank() {
         val id: Long = 10
 
-        mockMvc!!.perform(get("/api/tags/$id/rank"))
+        mockMvc!!.perform(get("/tags/$id/rank"))
                 .andExpect(status().isOk)
                 .andExpect(jsonPath("$").value(2))
     }
